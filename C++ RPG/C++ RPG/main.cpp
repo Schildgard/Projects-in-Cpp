@@ -27,14 +27,16 @@ int main() {
 
 	int levelWidth = 30;
 	int levelHeight = 20;
+	int roomCount = 2;
+	int currentRoom = 0;
 
-	int** level = CreateLevel(levelWidth, levelHeight, player);
-	DrawLevel(level, levelWidth, levelHeight);
+	int*** level = CreateLevel(levelWidth, levelHeight, player, roomCount, currentRoom);
+	DrawLevel(level, levelWidth, levelHeight, roomCount);
 
 
 
 	Start();
-	Update(player,level, levelWidth,levelHeight);
+	Update(player,level, levelWidth,levelHeight, roomCount, currentRoom);
 	Exit();
 
 
@@ -48,7 +50,7 @@ void Start()
 
 }
 
-void Update(Character* _player,int** _level, int _width, int _height)
+void Update(Character* _player,int*** _level, int _width, int _height, int _roomCount, int _currentRoom)
 {
 	bool gameIsRunning = true;
 
@@ -80,8 +82,8 @@ void Update(Character* _player,int** _level, int _width, int _height)
 				break;
 			}
 		}
-		_level = CreateLevel(_width,_height,_player);
-		DrawLevel(_level,_width,_height);
+		_level = CreateLevel(_width,_height,_player, _roomCount, _currentRoom);
+		DrawLevel(_level,_width,_height, _roomCount);
 		std::cout << "player moved to " << _player->Yposition << "of " << _height-2 << "\n";
 		std::cout << " player moved to " << _player->Xposition << "of " << _width - 2;
 	}
