@@ -36,6 +36,12 @@
     <ClCompile Include="gameworld.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="gameManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="characterController.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -57,6 +63,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="gameworld.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="gameManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="characterController.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

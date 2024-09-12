@@ -3,7 +3,7 @@
 #include <windows.h>
 #include "character.h"
 
-int*** CreateLevel(int _width, int _height, Character* _player, int _roomCount, int _currentRoom);
+int*** CreateLevel(int _width, int _height, Character* _player);
 
 void DrawLevel(int*** _level, int _width,int _height, int _roomCount);
 

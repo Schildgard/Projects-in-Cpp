@@ -1,17 +1,19 @@
 #include "gameworld.h"
+
+#include "gameManager.h"
 #define GREEN "\033[42m ";
 #define RED "\033[41m ";
 #define STANDARD "\033[0m ";
 #define DOOR "\033[44m ";
 
-int*** CreateLevel(int _width, int _height, Character* _player, int _roomCount, int _currentRoom)
+int*** CreateLevel(int _width, int _height, Character* _player)
 {
 	int*** array3D = 0; //initialize pointer
-	array3D = new int** [_roomCount];
+	array3D = new int** [GameManager::roomCount];
 
 
 
-	for (int c = 0; c < _roomCount; c++)
+	for (int c = 0; c < GameManager::roomCount; c++)
 	{
 		int** array2D = 0;
 		array2D = new int* [_height];
@@ -25,13 +27,13 @@ int*** CreateLevel(int _width, int _height, Character* _player, int _roomCount, 
 			{
 				if (h == 0 || h == _height - 1 || w == 0 || w == _width - 1)
 				{  
-					if (h == ((_height - 1) / 2) && w == _width - 1) //if middle of right side
+					if (c == 0 && h == ((_height - 1) / 2) && w == _width - 1 || c == 1 && h ==_height-1 &&  w == _width/2) //Create DOOR. Different places for room 1 and 2
 					{
 						array2D[h][w] = 3;
 					} else
 					array2D[h][w] = 1; //if Wall set value to 1
 				}
-				else if (h == _player->Yposition && w == _player->Xposition && c == _currentRoom)
+				else if (h == _player->Yposition && w == _player->Xposition && c == GameManager::currentRoom)
 				{
 					array2D[h][w] = 7;
 				}

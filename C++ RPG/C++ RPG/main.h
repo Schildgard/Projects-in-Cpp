@@ -6,5 +6,5 @@ int input;
 
 
 void Start();
-void Update(Character* _player, int*** _level, int _width, int _height, int _roomCount, int _currentRoom);
+void Update(Character* _player, int*** _level);
 void Exit();
