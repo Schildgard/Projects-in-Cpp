@@ -59,8 +59,8 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 {
 	std::cout << "\033[H\33[J";
 
-	int xOffset = 0;
-	int yOffset = 0;
+	short xOffset = 0;
+	short yOffset = 0;
 
 
 	for (int c = 0; c < _roomCount; c++)
@@ -95,7 +95,7 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 				else //if ground
 				{
 					std::cout << STANDARD; // Colorize the Ground Black
-				};
+				}
 			}
 			std::cout << STANDARD; //reset after line is finished
 			std::cout << "\n";
@@ -106,12 +106,11 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 		{
 			RelocateCursorPosition(0, 0); //Do not relocate cursor in last iteration, so that the gametext gets displayed under the level screen
 		}
-
 	}
 }
 
 
-void RelocateCursorPosition(int _xOffset, int _yOffset) {
+void RelocateCursorPosition(short _xOffset, short _yOffset) {
 	HANDLE currentPosition = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD startingPos = { _xOffset,_yOffset };
 	SetConsoleCursorPosition(currentPosition, startingPos);

@@ -5,7 +5,7 @@ std::chrono::high_resolution_clock::time_point FrameTimer:: frameStart = std::ch
 std::chrono::high_resolution_clock::time_point FrameTimer:: frameEnd = std::chrono::high_resolution_clock::now();
 
 
-const std::chrono::duration<double> FrameTimer:: frameTime(0.033); // 0.1 = 10fps, 0.033 = 30 fps = 0.0167 = 60fps
+const std::chrono::duration<double> FrameTimer:: frameTime(0.05); // 0.1 = 10fps, 0.033 = 30 fps = 0.0167 = 60fps
 
 std::chrono::duration<double> FrameTimer::CheckFrameDuration()
 {
