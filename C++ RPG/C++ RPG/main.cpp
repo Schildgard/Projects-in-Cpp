@@ -1,3 +1,4 @@
+#include  <Windows.h>
 #include <iostream>
 #include <chrono>
 #include "conio.h"
@@ -45,15 +46,15 @@ void Update(Character* _player, int*** _level)
 	{
 		FrameTimer::frameStart = std::chrono::high_resolution_clock::now();
 
-	//	
+		
+		//input = _getch();
+		//input = GetAsyncKeyState(VK_DOWN);
+	//if (input == 224) // if Arrow Key was pressed
+	//{
 	//	input = _getch();
-	//	//input = GetAsyncKeyState(VK_DOWN);
-	//	if (input == 224) // if Arrow Key was pressed
-	//	{
-	//		input = _getch();
-	//		MoveCharacter(_player, _level, input);
-	//	
-	//	}
+		MoveCharacter(_player, _level);
+	//
+	//}
 
 		_level = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, _player);
 		DrawLevel(_level, GameManager::levelWidth, GameManager::levelHeight, GameManager::roomCount);

@@ -1,11 +1,11 @@
 #include "characterController.h"
 
-void MoveCharacter(Character* _player, int*** _level, int _input)
+void MoveCharacter(Character* _player, int*** _level)
 {
 	int* yDisplacement = &_player->Yposition;
 	int* xDisplacement = &_player->Xposition;
 
-	int targetPositionValue = CheckTargetPosition(_player, _level, _input, yDisplacement, xDisplacement);
+	int targetPositionValue = CheckTargetPosition(_player, _level, yDisplacement, xDisplacement);
 
 	switch (targetPositionValue)
 	{
@@ -40,45 +40,46 @@ void MoveCharacter(Character* _player, int*** _level, int _input)
 
 };
 
-int CheckTargetPosition(Character* _player, int*** _level, int _input, int* _yDisplacement, int* _xDisplacement)
+int CheckTargetPosition(Character* _player, int*** _level, int* _yDisplacement, int* _xDisplacement)
 {
 	int currentPositionValue = _level[GameManager::currentRoom][_player->Yposition][_player->Xposition];
 	int targetPositionValue = 1;
 
 
-	switch (_input)
+	if (GetAsyncKeyState(VK_UP))
 	{
-	case 72: // UP
 		if (_player->Yposition > 1 || _level[GameManager::currentRoom][_player->Yposition - 1][_player->Xposition] == 4) //check if player is on upper edge
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition - 1][_player->Xposition];
 			*_yDisplacement = _player->Yposition--;
 		}
-		break;
-	case 80: //DOWN
+	}
+	else if (GetAsyncKeyState(VK_DOWN))
+	{
 		if (_player->Yposition < GameManager::levelHeight - 2 || _level[GameManager::currentRoom][_player->Yposition + 1][_player->Xposition] == 3) //check if player is on lower edge
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition + 1][_player->Xposition];
 			*_yDisplacement = _player->Yposition++;
 		}
-		break;
-	case 75: //LEFT
+	}
+	else if (GetAsyncKeyState(VK_LEFT))
+	{
 		if (_player->Xposition > 1 || _level[GameManager::currentRoom][_player->Yposition][_player->Xposition - 1] == 4) //check if player is on left edge and / or if he enters a mirror Door
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition][_player->Xposition - 1];
 			*_xDisplacement = _player->Xposition--;
 		}
-		break;
-	case 77: // RIGHT
+	}
+	else if (GetAsyncKeyState(VK_RIGHT))
+	{
 		if (_player->Xposition < GameManager::levelWidth - 2 || _level[GameManager::currentRoom][_player->Yposition][_player->Xposition + 1] == 3) //check if player is on right edge or if player enters a door
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition][_player->Xposition + 1];
 			*_xDisplacement = _player->Xposition++;
 		}
-		break;
-	default:
-		break;
 	}
+
+
 	return targetPositionValue;
 
 };

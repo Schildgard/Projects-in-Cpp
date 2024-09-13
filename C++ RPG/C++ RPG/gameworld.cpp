@@ -27,12 +27,12 @@ int*** CreateLevel(int _width, int _height, Character* _player)
 			{
 				if (h == 0 || h == _height - 1 || w == 0 || w == _width - 1)
 				{   //Create DOOR to next room at fixed places
-					if (c == 0 && h == ((_height - 1) / 2) && w == _width - 1 || c == 1 && h == _height -1 && w == _width / 2)
+					if (c == 0 && h == ((_height - 1) / 2) && w == _width - 1 || c == 1 && h == _height - 1 && w == _width / 2)
 					{
 						array2D[h][w] = 3;
 					}
 					//Create Door to previous room parallel to other door
-					else if(c == 1 && h == ((_height - 1) / 2) && w == 0 ||c == 2 && h == 0 && w == _width/2)
+					else if (c == 1 && h == ((_height - 1) / 2) && w == 0 || c == 2 && h == 0 && w == _width / 2)
 					{
 						array2D[h][w] = 4;
 					}
@@ -71,10 +71,8 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 
 		for (int h = 0; h < _height; h++)
 		{
-			for (int i = 0; i < xOffset; i++) //Add Offset
-			{
-				RelocateCursorPosition(xOffset, h + yOffset);
-			}
+
+			RelocateCursorPosition(xOffset, h + yOffset);
 
 			for (int w = 0; w < _width; w++)
 			{
