@@ -1,4 +1,5 @@
 #pragma once
+#include <ctime>
 
 static class GameManager
 {
@@ -7,6 +8,9 @@ public:
 	static int levelHeight;
 	static int roomCount;
 	static int currentRoom;
+
+
+
 
 };
 
