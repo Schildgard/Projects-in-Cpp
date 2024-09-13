@@ -46,8 +46,8 @@ void Update(Character* _player,int*** _level)
 		_level = CreateLevel(GameManager::levelWidth,GameManager::levelHeight,_player);
 		DrawLevel(_level,GameManager::levelWidth,GameManager::levelHeight, GameManager::roomCount);
 
-		std::cout << "player moved to " << _player->Yposition << " of levelheight: " << GameManager::levelHeight << "\n";
-		std::cout << " player moved to " << _player->Xposition << " of levelwidth: " << GameManager::levelWidth;
+		//std::cout << "player moved to " << _player->Yposition << " of levelheight: " << GameManager::levelHeight << "\n";
+		//std::cout << " player moved to " << _player->Xposition << " of levelwidth: " << GameManager::levelWidth;
 	}
 }
 

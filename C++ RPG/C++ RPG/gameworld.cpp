@@ -13,7 +13,7 @@ int*** CreateLevel(int _width, int _height, Character* _player)
 
 
 
-	for (int c = 0; c < GameManager::roomCount; c++)
+	for (int c = 0; c < GameManager::roomCount; c++) //c stands for (room)-room count, so for each active room, a 2D array is generated
 	{
 		int** array2D = 0;
 		array2D = new int* [_height];
@@ -26,12 +26,20 @@ int*** CreateLevel(int _width, int _height, Character* _player)
 			for (int w = 0; w < _width; w++)
 			{
 				if (h == 0 || h == _height - 1 || w == 0 || w == _width - 1)
-				{  
-					if (c == 0 && h == ((_height - 1) / 2) && w == _width - 1 || c == 1 && h ==_height-1 &&  w == _width/2) //Create DOOR. Different places for room 1 and 2
+				{   //Create DOOR to next room at fixed places
+					if (c == 0 && h == ((_height - 1) / 2) && w == _width - 1 || c == 1 && h == _height -1 && w == _width / 2)
 					{
 						array2D[h][w] = 3;
-					} else
-					array2D[h][w] = 1; //if Wall set value to 1
+					}
+					//Create Door to previous room parallel to other door
+					else if(c == 1 && h == ((_height - 1) / 2) && w == 0 ||c == 2 && h == 0 && w == _width/2)
+					{
+						array2D[h][w] = 4;
+					}
+					else
+					{
+						array2D[h][w] = 1; //if Wall set value to 1
+					}
 				}
 				else if (h == _player->Yposition && w == _player->Xposition && c == GameManager::currentRoom)
 				{
@@ -51,7 +59,7 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 {
 	std::cout << "\033[H\33[J";
 
-	int xOffset;
+	int xOffset = 0;
 	int yOffset = 0;
 
 
@@ -59,16 +67,13 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 	{
 		if (c == 0) { xOffset = 0; }
 		else if (c == 1) { xOffset = _width; }
-		else if (c == 2) { xOffset = _width * 2; }
-
-
-
+		else if (c == 2) { yOffset = _height; }
 
 		for (int h = 0; h < _height; h++)
 		{
 			for (int i = 0; i < xOffset; i++) //Add Offset
 			{
-				RelocateCursorPosition(xOffset, h);
+				RelocateCursorPosition(xOffset, h + yOffset);
 			}
 
 			for (int w = 0; w < _width; w++)
@@ -79,10 +84,13 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 				}
 				else if (_level[c][h][w] == 7) // if player
 				{
-
 					std::cout << RED;
 				}
 				else if (_level[c][h][w] == 3)
+				{
+					std::cout << DOOR;
+				}
+				else if (_level[c][h][w] == 4)
 				{
 					std::cout << DOOR;
 				}
