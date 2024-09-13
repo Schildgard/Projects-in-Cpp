@@ -1,16 +1,17 @@
 #include <iostream>
-#include "main.h"
-
 #include <chrono>
-
 #include "conio.h"
-#include <WinUser.h>
 #include <iomanip>
+#include <WinUser.h>
 
+
+#include "main.h"
 #include "gameworld.h"
 #include "gameManager.h"
+
 #include "player.h"
 #include "characterController.h"
+#include "framerate.h"
 
 
 
@@ -39,43 +40,32 @@ void Update(Character* _player, int*** _level)
 {
 	bool gameIsRunning = true;
 
-	std::chrono::high_resolution_clock::time_point startFrame;
-	std::chrono::high_resolution_clock::time_point endFrame;
-	std::chrono::duration <double> diff;
-
-	const std::chrono::duration<double> frameTime(0.033);
-
 
 	while (gameIsRunning)
 	{
+		FrameTimer::frameStart = std::chrono::high_resolution_clock::now();
 
-		startFrame = std::chrono::high_resolution_clock::now();
-		
-		input = _getch();
-		//input = GetAsyncKeyState(VK_DOWN);
-		if (input == 224) // if Arrow Key was pressed
-		{
-			input = _getch();
-			MoveCharacter(_player, _level, input);
-		
-		}
+	//	
+	//	input = _getch();
+	//	//input = GetAsyncKeyState(VK_DOWN);
+	//	if (input == 224) // if Arrow Key was pressed
+	//	{
+	//		input = _getch();
+	//		MoveCharacter(_player, _level, input);
+	//	
+	//	}
 
 		_level = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, _player);
 		DrawLevel(_level, GameManager::levelWidth, GameManager::levelHeight, GameManager::roomCount);
-		std::cout << "time passed: " << std::fixed << std::setprecision(2) << diff.count(); //WTF
+		std::cout << "time passed: " << std::fixed << std::setprecision(2) << FrameTimer::frameDuration.count(); //WTF
 
 
-		endFrame = std::chrono::high_resolution_clock::now();
-		diff = endFrame - startFrame; //
+		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
 
-
-		while (diff < frameTime)  // Compare if singleFrameTime has passed
+		while(FrameTimer::frameDuration < FrameTimer::frameTime)
 		{
-			endFrame = std::chrono::high_resolution_clock::now();
-			diff = endFrame - startFrame; //
-
+			FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
 		}
-
 
 	}
 }

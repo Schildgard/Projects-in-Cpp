@@ -42,6 +42,9 @@
     <ClCompile Include="characterController.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="framerate.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -69,6 +72,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="characterController.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="framerate.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

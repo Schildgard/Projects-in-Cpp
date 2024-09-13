@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="character.cpp" />
     <ClCompile Include="characterController.cpp" />
+    <ClCompile Include="framerate.cpp" />
     <ClCompile Include="gameManager.cpp" />
     <ClCompile Include="gameworld.cpp" />
     <ClCompile Include="kobold.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="character.h" />
     <ClInclude Include="characterController.h" />
+    <ClInclude Include="framerate.h" />
     <ClInclude Include="gameManager.h" />
     <ClInclude Include="gameworld.h" />
     <ClInclude Include="kobold.h" />
