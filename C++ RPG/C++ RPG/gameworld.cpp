@@ -6,6 +6,9 @@
 #define STANDARD "\033[0m ";
 #define DOOR "\033[44m ";
 
+//int*** levelrf = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, Character* _player)
+
+
 int*** CreateLevel(int _width, int _height, Character* _player)
 {
 	int*** array3D = 0; //initialize pointer
@@ -55,7 +58,7 @@ int*** CreateLevel(int _width, int _height, Character* _player)
 	return array3D;
 }
 
-void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
+void DrawLevel(int*** _level)
 {
 	std::cout << "\033[H\33[J";
 
@@ -63,18 +66,18 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 	short yOffset = 0;
 
 
-	for (int c = 0; c < _roomCount; c++)
+	for (int c = 0; c < GameManager::roomCount; c++)
 	{
 		if (c == 0) {xOffset = 0; }
-		else if (c == 1) { xOffset = _width; }
-		else if (c == 2) { yOffset = _height; }
+		else if (c == 1) { xOffset = GameManager::levelWidth; }
+		else if (c == 2) { yOffset = GameManager::levelHeight; }
 
-		for (int h = 0; h < _height; h++)
+		for (int h = 0; h < GameManager::levelHeight; h++)
 		{
 
 			RelocateCursorPosition(xOffset, h + yOffset);
 
-			for (int w = 0; w < _width; w++)
+			for (int w = 0; w < GameManager::levelWidth; w++)
 			{
 				if (_level[c][h][w] == 1) // if wall
 				{
@@ -102,7 +105,7 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 		}
 		std::cout << STANDARD; //After DrawMap, colorize Console in Black
 
-		if (c < _roomCount - 1)
+		if (c < GameManager::roomCount - 1)
 		{
 			RelocateCursorPosition(0, 0); //Do not relocate cursor in last iteration, so that the gametext gets displayed under the level screen
 		}
@@ -115,6 +118,7 @@ void DrawCharacter(Character* _char)
 	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
 	std::cout << RED;
 	RelocateCursorPosition(0, GameManager::levelHeight +1); //relocate cursor to text field
+	std::cout << STANDARD;
 }
 
 void ClearPreviousCharacterPosition(Character* _char)
@@ -122,7 +126,6 @@ void ClearPreviousCharacterPosition(Character* _char)
 	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
 	std::cout << STANDARD;
 }
-
 
 void RelocateCursorPosition(short _xOffset, short _yOffset) { //Rename Parameters if they are not only used for offset positions
 	HANDLE currentPosition = GetStdHandle(STD_OUTPUT_HANDLE);

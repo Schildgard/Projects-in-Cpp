@@ -1,5 +1,5 @@
 #pragma once
-#include <ctime>
+#include "gameworld.h"
 
 static class GameManager
 {
@@ -13,5 +13,6 @@ public:
 	static short xOffset;
 	static short yOffset;
 
+	static void ChangeCurrentRoom(int _multiplier); //either 1 for next level or -1 for previous level
 };
 

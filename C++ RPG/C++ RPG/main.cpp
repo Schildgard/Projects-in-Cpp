@@ -11,7 +11,7 @@ int main() {
 	Player* player = new Player();
 
 	int*** level = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, player);
-	DrawLevel(level, GameManager::levelWidth, GameManager::levelHeight, GameManager::roomCount);
+	DrawLevel(level);
 
 	Start();
 	Update(player, level);
