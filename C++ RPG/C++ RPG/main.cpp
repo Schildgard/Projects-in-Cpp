@@ -10,11 +10,12 @@
 int main() {
 	Player* player = new Player();
 
-	int*** level = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, player);
-	DrawLevel(level);
+	GameManager::world = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, player);
+
+	DrawLevel(GameManager::world);
 
 	Start();
-	Update(player, level);
+	Update(player, GameManager::world);
 	Exit();
 
 	return 0;
@@ -41,6 +42,7 @@ void Update(Character* _player, int*** _level)
 		{
 		MoveCharacter(_player, _level, input);
 		}
+
 
 		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration(); //compare startFrae with currentFrame
 		while(FrameTimer::frameDuration < FrameTimer::frameTime) //wait until frameTime is reached

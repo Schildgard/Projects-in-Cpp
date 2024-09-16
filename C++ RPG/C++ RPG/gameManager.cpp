@@ -1,5 +1,6 @@
 #include "gameManager.h"
 
+int*** GameManager::world = 0;
 
 int GameManager::levelWidth = 30;
 int GameManager::levelHeight = 20;
@@ -22,10 +23,11 @@ void GameManager::ChangeCurrentRoom(int _multiplier)
 		break;
 	case 1:
 		GameManager::xOffset = GameManager::levelWidth;
+		GameManager::yOffset = 0;
 		break;
 	case 2:
-		GameManager::yOffset = GameManager::levelHeight + 2;
+		GameManager::yOffset = GameManager::levelHeight;
 		break;
 	}
-	//DrawLevel()
+	DrawLevel(GameManager::world);
 }

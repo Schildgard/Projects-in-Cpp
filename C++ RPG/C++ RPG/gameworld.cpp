@@ -6,8 +6,6 @@
 #define STANDARD "\033[0m ";
 #define DOOR "\033[44m ";
 
-//int*** levelrf = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, Character* _player)
-
 
 int*** CreateLevel(int _width, int _height, Character* _player)
 {
@@ -16,7 +14,7 @@ int*** CreateLevel(int _width, int _height, Character* _player)
 
 
 
-	for (int c = 0; c < GameManager::roomCount; c++) //c stands for (room)-room count, so for each active room, a 2D array is generated
+	for (int c = 0; c < 3; c++) //c stands for (room)-room count, so for each active room, a 2D array is generated
 	{
 		int** array2D = 0;
 		array2D = new int* [_height];
@@ -46,7 +44,7 @@ int*** CreateLevel(int _width, int _height, Character* _player)
 				}
 				else if (h == _player->Yposition && w == _player->Xposition && c == GameManager::currentRoom)
 				{
-					array2D[h][w] = 7;
+					array2D[h][w] = 7; // set player start position
 				}
 				else
 				{
@@ -58,6 +56,7 @@ int*** CreateLevel(int _width, int _height, Character* _player)
 	return array3D;
 }
 
+
 void DrawLevel(int*** _level)
 {
 	std::cout << "\033[H\33[J";
@@ -68,7 +67,7 @@ void DrawLevel(int*** _level)
 
 	for (int c = 0; c < GameManager::roomCount; c++)
 	{
-		if (c == 0) {xOffset = 0; }
+		if (c == 0) { xOffset = 0; }
 		else if (c == 1) { xOffset = GameManager::levelWidth; }
 		else if (c == 2) { yOffset = GameManager::levelHeight; }
 
@@ -83,10 +82,10 @@ void DrawLevel(int*** _level)
 				{
 					std::cout << GREEN; // Colorize the Walls Green
 				}
-				else if (_level[c][h][w] == 7) // if player
-				{
-					std::cout << RED;
-				}
+				//else if (_level[c][h][w] == 7) // if player
+				//{
+				//	std::cout << RED;
+				//}
 				else if (_level[c][h][w] == 3)
 				{
 					std::cout << DOOR;
@@ -117,7 +116,7 @@ void DrawCharacter(Character* _char)
 
 	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
 	std::cout << RED;
-	RelocateCursorPosition(0, GameManager::levelHeight +1); //relocate cursor to text field
+	RelocateCursorPosition(0, GameManager::levelHeight + 1); //relocate cursor to text field
 	std::cout << STANDARD;
 }
 
@@ -127,7 +126,8 @@ void ClearPreviousCharacterPosition(Character* _char)
 	std::cout << STANDARD;
 }
 
-void RelocateCursorPosition(short _xOffset, short _yOffset) { //Rename Parameters if they are not only used for offset positions
+void RelocateCursorPosition(short _xOffset, short _yOffset)
+{
 	HANDLE currentPosition = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD startingPos = { _xOffset,_yOffset };
 	SetConsoleCursorPosition(currentPosition, startingPos);

@@ -4,7 +4,6 @@
 #include "character.h"
 
 
-//int*** level;
 
 int*** CreateLevel(int _width, int _height, Character* _player);
 void DrawLevel(int*** _level);

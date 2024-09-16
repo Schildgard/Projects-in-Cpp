@@ -4,6 +4,8 @@
 static class GameManager
 {
 public:
+	static int*** world;
+
 	static int levelWidth;
 	static int levelHeight;
 	static int roomCount;
