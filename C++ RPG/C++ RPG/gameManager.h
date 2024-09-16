@@ -10,7 +10,8 @@ public:
 	static int currentRoom;
 
 
-
+	static short xOffset;
+	static short yOffset;
 
 };
 

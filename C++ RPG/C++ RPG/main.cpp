@@ -29,23 +29,24 @@ void Start()
 void Update(Character* _player, int*** _level)
 {
 	bool gameIsRunning = true;
+	int input = 0;
 
 	while (gameIsRunning)
 	{
-		FrameTimer::frameStart = std::chrono::high_resolution_clock::now(); //save time on frameStart
-
-		MoveCharacter(_player, _level);
+		FrameTimer::frameStart = std::chrono::high_resolution_clock::now(); //start counting FrameTime
 
 		_level = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, _player);
-		DrawLevel(_level, GameManager::levelWidth, GameManager::levelHeight, GameManager::roomCount);
+		input = LookForInput();
+		if (input != 0)
+		{
+		MoveCharacter(_player, _level, input);
+		}
 
-		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
-
-		while(FrameTimer::frameDuration < FrameTimer::frameTime)
+		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration(); //compare startFrae with currentFrame
+		while(FrameTimer::frameDuration < FrameTimer::frameTime) //wait until frameTime is reached
 		{
 			FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
 		}
-
 	}
 }
 

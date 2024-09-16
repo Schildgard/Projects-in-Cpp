@@ -65,7 +65,7 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 
 	for (int c = 0; c < _roomCount; c++)
 	{
-		if (c == 0) { xOffset = 0; }
+		if (c == 0) {xOffset = 0; }
 		else if (c == 1) { xOffset = _width; }
 		else if (c == 2) { yOffset = _height; }
 
@@ -109,8 +109,22 @@ void DrawLevel(int*** _level, int _width, int _height, int _roomCount)
 	}
 }
 
+void DrawCharacter(Character* _char)
+{
 
-void RelocateCursorPosition(short _xOffset, short _yOffset) {
+	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
+	std::cout << RED;
+	RelocateCursorPosition(0, GameManager::levelHeight +1); //relocate cursor to text field
+}
+
+void ClearPreviousCharacterPosition(Character* _char)
+{
+	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
+	std::cout << STANDARD;
+}
+
+
+void RelocateCursorPosition(short _xOffset, short _yOffset) { //Rename Parameters if they are not only used for offset positions
 	HANDLE currentPosition = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD startingPos = { _xOffset,_yOffset };
 	SetConsoleCursorPosition(currentPosition, startingPos);

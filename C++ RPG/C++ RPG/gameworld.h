@@ -7,4 +7,7 @@ int*** CreateLevel(int _width, int _height, Character* _player);
 
 void DrawLevel(int*** _level, int _width,int _height, int _roomCount);
 
+void DrawCharacter(Character* _char);
+void ClearPreviousCharacterPosition(Character* _char);
+
 void RelocateCursorPosition(short _xOffset, short _yOffset);
