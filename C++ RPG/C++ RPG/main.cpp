@@ -17,9 +17,12 @@ int main()
 
 void Start()
 {
+	// Initialize Level
 	GameManager::player = new Player();
-	GameManager::world = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight, GameManager::player);
+	GameManager::world = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight);
 	Visualizer::DrawLevel();
+
+
 }
 
 void Update(Character* _player, int*** _level)
@@ -31,7 +34,7 @@ void Update(Character* _player, int*** _level)
 	{
 		FrameTimer::frameStart = std::chrono::high_resolution_clock::now(); //start counting FrameTime
 
-		_level = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight, _player);
+		_level = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight);
 		input = CharacterController::LookForInput();
 		if (input != 0)
 		{
@@ -42,6 +45,11 @@ void Update(Character* _player, int*** _level)
 		{
 			FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
 		}
+	//if (GameManager::activeEnemies != nullptr)
+	//{
+	//	Visualizer::UpdateCharacterPosition(GameManager::activeEnemies);
+	//	std::cout << GameManager::activeEnemies->name;
+	//}
 	}
 }
 

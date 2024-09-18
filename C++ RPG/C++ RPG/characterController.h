@@ -3,7 +3,7 @@
 #include <WinUser.h>
 
 #include "character.h"
-#include "gameManager.h"
+#include "model.h"
 
 #include "view.h"
 

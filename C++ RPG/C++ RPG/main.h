@@ -1,8 +1,9 @@
 #pragma once
 #include "character.h"
-#include "gameworld.h"
+#include "controller.h"
 #include "view.h"
 #include "framerate.h"
+#include "zombie.h"
 
 int input;
 

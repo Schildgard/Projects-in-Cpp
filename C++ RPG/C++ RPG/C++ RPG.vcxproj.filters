@@ -33,10 +33,10 @@
     <ClCompile Include="zombie.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="gameworld.cpp">
+    <ClCompile Include="controller.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="gameManager.cpp">
+    <ClCompile Include="model.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="characterController.cpp">
@@ -68,10 +68,10 @@
     <ClInclude Include="zombie.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="gameworld.h">
+    <ClInclude Include="controller.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="gameManager.h">
+    <ClInclude Include="model.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="characterController.h">

@@ -2,12 +2,13 @@
 #include <iostream>
 #include <windows.h>
 #include "character.h"
-#include "gameManager.h"
+#include "model.h"
 
 #define GREEN "\033[42m ";
 #define RED "\033[41m ";
 #define STANDARD "\033[0m ";
 #define DOOR "\033[44m ";
+#define ZOMBIE "\033[47"
 
 namespace Visualizer
 {

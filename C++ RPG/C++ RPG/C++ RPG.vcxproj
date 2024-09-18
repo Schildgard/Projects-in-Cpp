@@ -130,8 +130,8 @@
     <ClCompile Include="character.cpp" />
     <ClCompile Include="characterController.cpp" />
     <ClCompile Include="framerate.cpp" />
-    <ClCompile Include="gameManager.cpp" />
-    <ClCompile Include="gameworld.cpp" />
+    <ClCompile Include="model.cpp" />
+    <ClCompile Include="controller.cpp" />
     <ClCompile Include="kobold.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
@@ -143,8 +143,8 @@
     <ClInclude Include="character.h" />
     <ClInclude Include="characterController.h" />
     <ClInclude Include="framerate.h" />
-    <ClInclude Include="gameManager.h" />
-    <ClInclude Include="gameworld.h" />
+    <ClInclude Include="model.h" />
+    <ClInclude Include="controller.h" />
     <ClInclude Include="kobold.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="monster.h" />

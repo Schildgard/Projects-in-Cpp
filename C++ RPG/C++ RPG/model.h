@@ -18,6 +18,7 @@ public:
 
 	static Character* player;
 
-	static void ChangeCurrentRoom(int _multiplier); //either 1 for next level or -1 for previous level
+	static Character* activeEnemies;
+
 };
 

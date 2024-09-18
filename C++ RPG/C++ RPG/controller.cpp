@@ -1,7 +1,7 @@
-#include "gameworld.h"
+#include "controller.h"
 
 
-int*** GameController::CreateLevel(int _width, int _height, Character* _player)
+int*** GameController::CreateLevel(int _width, int _height)
 {
 	int*** array3D = 0; //initialize pointer
 	array3D = new int** [GameManager::roomCount];
@@ -32,7 +32,7 @@ int*** GameController::CreateLevel(int _width, int _height, Character* _player)
 						array2D[h][w] = 1; //if Wall set value to 1
 					}
 				}
-				else if (h == _player->Yposition && w == _player->Xposition && c == GameManager::currentRoom)
+				else if (h == GameManager::player->Yposition && w == GameManager::player->Xposition && c == GameManager::currentRoom)
 				{
 					array2D[h][w] = 7; // set player start position
 				}
@@ -68,14 +68,14 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 	case 3:
 		if (GameManager::roomCount < 3)
 		{
-			GameManager::roomCount = GameManager::currentRoom + 2; //+2 because currentRoomIndex starts at 0 while roomCount starts at 1
+			OpenNewRoom();
 		}
-		GameManager::ChangeCurrentRoom(+1); // TODO: Change to constant
+		ChangeCurrentRoom(+1); // TODO: Change to constant
 		if (GameManager::currentRoom == 1)_player->Xposition = 1; // funktioniert in level 1, in level 2 aber nicht mehr
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		break;
 	case 4:
-		GameManager::ChangeCurrentRoom(-1); // TODO: Change to constant
+		ChangeCurrentRoom(-1); // TODO: Change to constant
 		if (GameManager::currentRoom == 0)_player->Xposition = GameManager::levelWidth - 2; // funktioniert von level 2 in level 1, aber von level 3 in 2 wird das nicht funktionieren
 		else if (GameManager::currentRoom == 1) _player->Yposition = GameManager::levelHeight - 2;
 		break;
@@ -83,6 +83,8 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		break;
 	}
 	Visualizer::UpdateCharacterPosition(_player);
+	if(GameManager::activeEnemies != nullptr)
+	Visualizer::UpdateCharacterPosition(GameManager::activeEnemies);
 
 }
 
@@ -129,6 +131,55 @@ int GameController::CheckTargetPosition(Character* _player, int*** _level, int* 
 	return targetPositionValue;
 
 };
+
+void GameController::ChangeCurrentRoom(int _multiplier)
+{
+	//either 1 for next level or -1 for previous level
+	GameManager::currentRoom += _multiplier;
+
+	switch (GameManager::currentRoom)
+	{
+	case 0:
+		GameManager::xOffset = 0;
+		GameManager::yOffset = 0;
+		break;
+	case 1:
+		GameManager::xOffset = GameManager::levelWidth;
+		GameManager::yOffset = 0;
+		break;
+	case 2:
+		GameManager::yOffset = GameManager::levelHeight;
+		break;
+	}
+	Visualizer::DrawLevel();
+}
+
+void GameController::OpenNewRoom()
+{
+	GameManager::roomCount = GameManager::currentRoom + 2;//+2 because currentRoomIndex starts at 0 while roomCount starts at 1
+	SpawnMonsters();
+}
+
+void GameController::SpawnMonsters()
+{
+	Zombie* Zombie01 = new Zombie();
+
+	switch (GameManager::roomCount)
+	{
+	case 1:
+		break;
+	case 2:
+		Zombie01->Xposition = 5;
+		Zombie01->Yposition = 5;
+		GameManager::activeEnemies = Zombie01;
+		//Visualizer::UpdateCharacterPosition(GameManager::activeEnemies);
+		break;
+	case 3:
+		break;
+	default:
+		break;
+	}
+}
 
 
 
