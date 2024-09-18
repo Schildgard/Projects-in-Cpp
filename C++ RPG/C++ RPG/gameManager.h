@@ -1,5 +1,6 @@
 #pragma once
-#include "gameworld.h"
+#include "view.h"
+#include "character.h"
 
 static class GameManager
 {

@@ -45,6 +45,9 @@
     <ClCompile Include="framerate.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="view.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -75,6 +78,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="framerate.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="view.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

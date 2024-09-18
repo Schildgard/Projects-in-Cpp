@@ -2,7 +2,7 @@
 
 void MoveCharacter(Character* _player, int*** _level, int _input)
 {
-	ClearPreviousCharacterPosition(_player);
+	Visualizer::ClearPreviousCharacterPosition(_player);
 
 	int* yDisplacement = &_player->Yposition;
 	int* xDisplacement = &_player->Xposition;
@@ -24,13 +24,11 @@ void MoveCharacter(Character* _player, int*** _level, int _input)
 		{
 			GameManager::roomCount = GameManager::currentRoom + 2; //+2 because currentRoomIndex starts at 0 while roomCount starts at 1
 		}
-		//GameManager::currentRoom++;
 		GameManager::ChangeCurrentRoom(+1); // TODO: Change to constant
 		if (GameManager::currentRoom == 1)_player->Xposition = 1; // funktioniert in level 1, in level 2 aber nicht mehr
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		break;
 	case 4:
-		//GameManager::currentRoom--;
 		GameManager::ChangeCurrentRoom(-1); // TODO: Change to constant
 		if (GameManager::currentRoom == 0)_player->Xposition = GameManager::levelWidth - 2; // funktioniert von level 2 in level 1, aber von level 3 in 2 wird das nicht funktionieren
 		else if (GameManager::currentRoom == 1) _player->Yposition = GameManager::levelHeight - 2;
@@ -38,7 +36,7 @@ void MoveCharacter(Character* _player, int*** _level, int _input)
 	default:
 		break;
 	}
-	DrawCharacter(_player);
+	Visualizer::UpdateCharacterPosition(_player);
 
 }
 int LookForInput()

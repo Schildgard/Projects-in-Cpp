@@ -7,12 +7,12 @@
 
 
 
+
 int main() {
 	Player* player = new Player();
 
 	GameManager::world = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, player);
-
-	DrawLevel(GameManager::world);
+	Visualizer::DrawLevel();
 
 	Start();
 	Update(player, GameManager::world);

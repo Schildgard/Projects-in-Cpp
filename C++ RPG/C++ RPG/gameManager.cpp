@@ -10,6 +10,7 @@ int GameManager::roomCount = 1;
 short GameManager::xOffset = 0;
 short GameManager::yOffset = 0;
 
+
 void GameManager::ChangeCurrentRoom(int _multiplier)
 {
 	//either 1 for next level or -1 for previous level
@@ -29,5 +30,5 @@ void GameManager::ChangeCurrentRoom(int _multiplier)
 		GameManager::yOffset = GameManager::levelHeight;
 		break;
 	}
-	DrawLevel(GameManager::world);
+	Visualizer::DrawLevel();
 }

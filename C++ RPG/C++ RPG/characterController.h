@@ -1,10 +1,11 @@
 #pragma once
 #include <Windows.h>
+#include <WinUser.h>
+
 #include "character.h"
 #include "gameManager.h"
-#include <WinUser.h>
-#include "gameworld.h"
 
+#include "view.h"
 
 
 void MoveCharacter(Character* _player, int*** _level, int _input);

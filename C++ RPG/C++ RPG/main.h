@@ -1,6 +1,7 @@
 #pragma once
 #include "character.h"
 #include "gameworld.h"
+#include "view.h"
 
 int input;
 
