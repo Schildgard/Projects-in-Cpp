@@ -1,21 +1,14 @@
-//#include <iomanip> // used to precise the console output to doubles
 
 #include "main.h"
-#include "framerate.h"
 #include "player.h"
 #include "characterController.h"
 
 
 
-
-int main() {
-	Player* player = new Player();
-
-	GameManager::world = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, player);
-	Visualizer::DrawLevel();
-
+int main()
+{
 	Start();
-	Update(player, GameManager::world);
+	Update(GameManager::player, GameManager::world);
 	Exit();
 
 	return 0;
@@ -24,7 +17,9 @@ int main() {
 
 void Start()
 {
-
+	GameManager::player = new Player();
+	GameManager::world = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight, GameManager::player);
+	Visualizer::DrawLevel();
 }
 
 void Update(Character* _player, int*** _level)
@@ -36,16 +31,14 @@ void Update(Character* _player, int*** _level)
 	{
 		FrameTimer::frameStart = std::chrono::high_resolution_clock::now(); //start counting FrameTime
 
-		_level = CreateLevel(GameManager::levelWidth, GameManager::levelHeight, _player);
-		input = LookForInput();
+		_level = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight, _player);
+		input = CharacterController::LookForInput();
 		if (input != 0)
 		{
-		MoveCharacter(_player, _level, input);
+			GameController::MoveCharacter(_player, _level, input);
 		}
-
-
 		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration(); //compare startFrae with currentFrame
-		while(FrameTimer::frameDuration < FrameTimer::frameTime) //wait until frameTime is reached
+		while (FrameTimer::frameDuration < FrameTimer::frameTime) //wait until frameTime is reached
 		{
 			FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
 		}

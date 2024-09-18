@@ -1,6 +1,6 @@
 #pragma once
 #include "view.h"
-#include "character.h"
+#include "player.h"
 
 static class GameManager
 {
@@ -15,6 +15,8 @@ public:
 
 	static short xOffset;
 	static short yOffset;
+
+	static Character* player;
 
 	static void ChangeCurrentRoom(int _multiplier); //either 1 for next level or -1 for previous level
 };

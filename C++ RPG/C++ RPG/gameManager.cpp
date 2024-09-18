@@ -10,6 +10,8 @@ int GameManager::roomCount = 1;
 short GameManager::xOffset = 0;
 short GameManager::yOffset = 0;
 
+Character* GameManager::player = nullptr;
+
 
 void GameManager::ChangeCurrentRoom(int _multiplier)
 {
