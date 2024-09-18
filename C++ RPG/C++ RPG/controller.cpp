@@ -71,12 +71,12 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 			OpenNewRoom();
 		}
 		ChangeCurrentRoom(+1); // TODO: Change to constant
-		if (GameManager::currentRoom == 1)_player->Xposition = 1; // funktioniert in level 1, in level 2 aber nicht mehr
+		if (GameManager::currentRoom == 1)_player->Xposition = 1;
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		break;
 	case 4:
 		ChangeCurrentRoom(-1); // TODO: Change to constant
-		if (GameManager::currentRoom == 0)_player->Xposition = GameManager::levelWidth - 2; // funktioniert von level 2 in level 1, aber von level 3 in 2 wird das nicht funktionieren
+		if (GameManager::currentRoom == 0)_player->Xposition = GameManager::levelWidth - 2;
 		else if (GameManager::currentRoom == 1) _player->Yposition = GameManager::levelHeight - 2;
 		break;
 	default:

@@ -45,11 +45,6 @@ void Update(Character* _player, int*** _level)
 		{
 			FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
 		}
-	//if (GameManager::activeEnemies != nullptr)
-	//{
-	//	Visualizer::UpdateCharacterPosition(GameManager::activeEnemies);
-	//	std::cout << GameManager::activeEnemies->name;
-	//}
 	}
 }
 
