@@ -10,6 +10,8 @@ public:
 		def = 2;
 		spd = 2;
 		exp = 4;
+
+		dungeonLevel = 1;
 	};
 	bool resurrected = false;
 	virtual void Die() override;

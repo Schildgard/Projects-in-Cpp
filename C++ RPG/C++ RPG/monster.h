@@ -5,6 +5,9 @@
 
 class Monster : public Character {
 public:
-	Monster() {};
+	int dungeonLevel;
+	Monster()
+	{
+	};
 	virtual void Attack(Character* _target) override;
 };

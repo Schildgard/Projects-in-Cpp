@@ -48,6 +48,10 @@ void Visualizer::DrawLevel()
 			RelocateCursorPosition(0, 0); //Do not relocate cursor in last iteration, so that the gametext gets displayed under the level screen
 		}
 	}
+	//if(GameManager::activeEnemies != nullptr)
+	//{
+	//	Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
+	//}
 }
 
 void Visualizer::UpdateCharacterPosition(Character* _char)

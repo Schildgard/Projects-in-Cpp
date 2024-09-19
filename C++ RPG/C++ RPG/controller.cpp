@@ -57,7 +57,6 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 	switch (targetPositionValue)
 	{
 	case 0: // if targetPosition is normal ground
-
 		_player->Yposition = *yDisplacement;
 		_player->Xposition = *xDisplacement;
 		break;
@@ -71,6 +70,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 			OpenNewRoom();
 		}
 		ChangeCurrentRoom(+1); // TODO: Change to constant
+		Visualizer::DrawLevel();
 		if (GameManager::currentRoom == 1)_player->Xposition = 1;
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		if (GameManager::activeEnemies != nullptr)
@@ -154,7 +154,7 @@ void GameController::ChangeCurrentRoom(int _multiplier)
 		GameManager::yOffset = GameManager::levelHeight;
 		break;
 	}
-	Visualizer::DrawLevel();
+	//Visualizer::DrawLevel();
 }
 
 void GameController::OpenNewRoom()
@@ -165,21 +165,24 @@ void GameController::OpenNewRoom()
 
 void GameController::SpawnMonsters()
 {
-	Zombie* Zombie01 = new Zombie();
-
-	switch (GameManager::roomCount)
+	if (GameManager::currentRoom == 0)
 	{
-	case 1:
-		break;
-	case 2:
-		Zombie01->Xposition = 5;
-		Zombie01->Yposition = 5;
-		GameManager::activeEnemies = Zombie01;
-		break;
-	case 3:
-		break;
-	default:
-		break;
+		Zombie* Zombie01 = new Zombie();
+
+		switch (GameManager::roomCount)
+		{
+		case 1:
+			break;
+		case 2:
+			Zombie01->Xposition = 5;
+			Zombie01->Yposition = 5;
+			GameManager::activeEnemies = Zombie01;
+			break;
+		case 3:
+			break;
+		default:
+			break;
+		}
 	}
 }
 
