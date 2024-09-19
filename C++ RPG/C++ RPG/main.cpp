@@ -43,7 +43,7 @@ void Update(Character* _player, int*** _level)
 		{
 			GameController::MoveCharacter(_player, _level, input);
 		}
-		//WAIT FOR FRAME TIME TO END
+		//WAIT FOR FRAME TIME TO ENDq
 		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration(); //compare startFrame with currentFrame
 		while (FrameTimer::frameDuration < FrameTimer::frameTime) //wait until frameTime is reached
 		{
@@ -57,11 +57,8 @@ void Update(Character* _player, int*** _level)
 			//INSERT ENEMY BEHAVIOUR HERE
 			if (GameManager::enemiesInScene.size() != 0)
 			{
-				//Visualizer::ClearPreviousCharacterPosition(GameManager::activeEnemies);
 				Visualizer::ClearPreviousCharacterPosition(GameManager::enemiesInScene[0]);
-				//GameManager::activeEnemies->Move();
 				GameManager::enemiesInScene[0]->Move();
-				//Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
 				Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
 				
 			}

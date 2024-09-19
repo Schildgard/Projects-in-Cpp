@@ -74,7 +74,6 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		if (GameManager::enemiesInScene.size() != 0)
 		{
-			//Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
 			Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
 		}
 		break;
@@ -87,6 +86,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		break;
 	}
 
+	CheckCollisionWithMonster();
 	Visualizer::UpdateCharacterPosition(_player);
 	
 
@@ -177,7 +177,6 @@ void GameController::SpawnMonsters()
 		case 2:
 			Zombie01->Xposition = 5;
 			Zombie01->Yposition = 5;
-			//GameManager::activeEnemies = Zombie01;
 			GameManager::enemiesInScene.push_back(Zombie01);
 			break;
 		case 3:
@@ -190,7 +189,13 @@ void GameController::SpawnMonsters()
 
 void GameController::CheckCollisionWithMonster()
 {
-	//int enemyCount = sizeof(GameManager::activeEnemies) / sizeof(Monster);
+	for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
+	{
+		if (GameManager::player->Xposition == GameManager::enemiesInScene[i]->Xposition && GameManager::player->Yposition == GameManager::enemiesInScene[i]->Yposition)
+		{
+			std::cout << "BÄM! ENCOUNTER ";
+		}
+	}
 }
 
 
