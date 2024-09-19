@@ -58,6 +58,14 @@ void Visualizer::UpdateCharacterPosition(Character* _char)
 	std::cout << STANDARD;
 }
 
+void Visualizer::UpdateMonsterPosition(Character* _mon)
+{
+	RelocateCursorPosition(_mon->Xposition + GameManager::xOffset, _mon->Yposition + GameManager::yOffset);
+	std::cout << MONSTER;
+	RelocateCursorPosition(0, GameManager::levelHeight + 1); //relocate cursor to text field
+	std::cout << STANDARD;
+}
+
 void Visualizer::RelocateCursorPosition(short _xOffset, short _yOffset)
 {
 	HANDLE currentPosition = GetStdHandle(STD_OUTPUT_HANDLE);
