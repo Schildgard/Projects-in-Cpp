@@ -13,6 +13,6 @@ public:
 
 	static std::chrono::duration<double> CheckFrameDuration();
 
-
+	static int frameCounter; //counts how many frames have passed to control enemy AI
 
 };

@@ -12,4 +12,4 @@ short GameManager::yOffset = 0;
 
 Character* GameManager::player = nullptr;
 
-Character* GameManager::activeEnemies = nullptr;
+Monster* GameManager::activeEnemies = nullptr;

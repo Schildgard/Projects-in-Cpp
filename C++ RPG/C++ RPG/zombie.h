@@ -12,6 +12,8 @@ public:
 		exp = 4;
 
 		dungeonLevel = 1;
+		moveSteps = 3;
+		direction = 1;
 	};
 	bool resurrected = false;
 	virtual void Die() override;

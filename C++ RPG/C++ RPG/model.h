@@ -18,7 +18,7 @@ public:
 
 	static Character* player;
 
-	static Character* activeEnemies;
+	static Monster* activeEnemies;
 
 };
 

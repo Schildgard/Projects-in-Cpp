@@ -48,10 +48,6 @@ void Visualizer::DrawLevel()
 			RelocateCursorPosition(0, 0); //Do not relocate cursor in last iteration, so that the gametext gets displayed under the level screen
 		}
 	}
-	//if(GameManager::activeEnemies != nullptr)
-	//{
-	//	Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
-	//}
 }
 
 void Visualizer::UpdateCharacterPosition(Character* _char)
@@ -62,12 +58,23 @@ void Visualizer::UpdateCharacterPosition(Character* _char)
 	std::cout << STANDARD;
 }
 
-void Visualizer::UpdateMonsterPosition(Character* _mon)
+void Visualizer::UpdateMonsterPosition(Monster* _mon)
 {
-	RelocateCursorPosition(_mon->Xposition + GameManager::xOffset, _mon->Yposition + GameManager::yOffset);
-	std::cout << MONSTER;
-	RelocateCursorPosition(0, GameManager::levelHeight + 1); //relocate cursor to text field
-	std::cout << STANDARD;
+	if (_mon->dungeonLevel == 1)
+	{
+		RelocateCursorPosition(_mon->Xposition + GameManager::levelWidth, _mon->Yposition + 0);
+		std::cout << MONSTER;
+		RelocateCursorPosition(0, GameManager::levelHeight + 1); //relocate cursor to text field
+		std::cout << STANDARD;
+	}
+	else if (_mon->dungeonLevel == 2)
+	{
+		RelocateCursorPosition(_mon->Xposition + GameManager::levelWidth, _mon->Yposition + GameManager::levelHeight);
+		std::cout << MONSTER;
+		RelocateCursorPosition(0, GameManager::levelHeight + 1); //relocate cursor to text field
+		std::cout << STANDARD;
+	}
+
 }
 
 void Visualizer::RelocateCursorPosition(short _xOffset, short _yOffset)
@@ -77,7 +84,7 @@ void Visualizer::RelocateCursorPosition(short _xOffset, short _yOffset)
 	SetConsoleCursorPosition(currentPosition, startingPos);
 }
 
-void Visualizer:: ClearPreviousCharacterPosition(Character* _char)
+void Visualizer::ClearPreviousCharacterPosition(Character* _char)
 {
 	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
 	std::cout << STANDARD;

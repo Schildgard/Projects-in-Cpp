@@ -65,12 +65,11 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		_player->Xposition = *xDisplacement;
 		break;
 	case 3:
-		if (GameManager::roomCount < 3)
+		if (GameManager::roomCount < 3) // Open new Room if not opened yet
 		{
 			OpenNewRoom();
 		}
 		ChangeCurrentRoom(+1); // TODO: Change to constant
-		Visualizer::DrawLevel();
 		if (GameManager::currentRoom == 1)_player->Xposition = 1;
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		if (GameManager::activeEnemies != nullptr)
@@ -154,13 +153,13 @@ void GameController::ChangeCurrentRoom(int _multiplier)
 		GameManager::yOffset = GameManager::levelHeight;
 		break;
 	}
-	//Visualizer::DrawLevel();
 }
 
 void GameController::OpenNewRoom()
 {
 	GameManager::roomCount = GameManager::currentRoom + 2;//+2 because currentRoomIndex starts at 0 while roomCount starts at 1
 	SpawnMonsters();
+	Visualizer::DrawLevel();
 }
 
 void GameController::SpawnMonsters()

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <windows.h>
 #include "character.h"
+#include "monster.h"
 #include "model.h"
 
 #define GREEN "\033[42m ";
@@ -16,7 +17,7 @@ namespace Visualizer
 
 	void UpdateCharacterPosition(Character* _char);
 
-	void UpdateMonsterPosition(Character* _mon); // Difference to Update Character Position is, that Monsters do not leave their assigned Room.
+	void UpdateMonsterPosition(Monster* _mon); // Difference to Update Character Position is, that Monsters do not leave their assigned Room.
 	void RelocateCursorPosition(short _xOffset, short _yOffset);
 
 	void ClearPreviousCharacterPosition(Character* _char);
