@@ -1,6 +1,7 @@
 #pragma once
 #include "view.h"
 #include "player.h"
+#include <vector>
 
 static class GameManager
 {
@@ -18,7 +19,9 @@ public:
 
 	static Character* player;
 
-	static Monster* activeEnemies;
+	//static Monster* activeEnemies;
+
+	static std::vector<Monster*> enemiesInScene;
 
 };
 

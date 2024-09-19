@@ -1,5 +1,5 @@
 #include "monster.h"
-
+#include "model.h"
 
 
 void Monster::Attack(Character* _target)
@@ -19,5 +19,10 @@ void Monster::Move()
 	{
 		moveSteps = 3;
 		direction *= -1;
+	}
+
+	if(Yposition == GameManager::player->Yposition && Xposition == GameManager::player->Xposition && dungeonLevel == GameManager::currentRoom)
+	{
+		std::cout << "Encounter";
 	}
 }

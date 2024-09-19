@@ -52,14 +52,17 @@ void Update(Character* _player, int*** _level)
 
 		//COUNT FRAMES TO CONTROL ENEMY BEHAVIOUR
 		FrameTimer::frameCounter++;
-		if (FrameTimer::frameCounter >= 30)
+		if (FrameTimer::frameCounter >= 15) //how fast enemy are supposed to move. framerate is limited to 30 fps so 30 means 1 move per second
 		{
 			//INSERT ENEMY BEHAVIOUR HERE
-			if (GameManager::activeEnemies != nullptr)
+			if (GameManager::enemiesInScene.size() != 0)
 			{
-				Visualizer::ClearPreviousCharacterPosition(GameManager::activeEnemies);
-				GameManager::activeEnemies->Move();
-				Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
+				//Visualizer::ClearPreviousCharacterPosition(GameManager::activeEnemies);
+				Visualizer::ClearPreviousCharacterPosition(GameManager::enemiesInScene[0]);
+				//GameManager::activeEnemies->Move();
+				GameManager::enemiesInScene[0]->Move();
+				//Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
+				Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
 				
 			}
 			FrameTimer::frameCounter = 0;

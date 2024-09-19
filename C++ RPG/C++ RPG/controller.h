@@ -15,5 +15,7 @@ namespace GameController
 	void OpenNewRoom();
 
 	void SpawnMonsters();
+
+	void CheckCollisionWithMonster();
 }
 

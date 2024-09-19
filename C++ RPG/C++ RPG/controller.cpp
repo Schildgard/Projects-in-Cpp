@@ -72,9 +72,10 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		ChangeCurrentRoom(+1); // TODO: Change to constant
 		if (GameManager::currentRoom == 1)_player->Xposition = 1;
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
-		if (GameManager::activeEnemies != nullptr)
+		if (GameManager::enemiesInScene.size() != 0)
 		{
-			Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
+			//Visualizer::UpdateMonsterPosition(GameManager::activeEnemies);
+			Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
 		}
 		break;
 	case 4:
@@ -85,6 +86,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 	default:
 		break;
 	}
+
 	Visualizer::UpdateCharacterPosition(_player);
 	
 
@@ -175,7 +177,8 @@ void GameController::SpawnMonsters()
 		case 2:
 			Zombie01->Xposition = 5;
 			Zombie01->Yposition = 5;
-			GameManager::activeEnemies = Zombie01;
+			//GameManager::activeEnemies = Zombie01;
+			GameManager::enemiesInScene.push_back(Zombie01);
 			break;
 		case 3:
 			break;
@@ -183,6 +186,11 @@ void GameController::SpawnMonsters()
 			break;
 		}
 	}
+}
+
+void GameController::CheckCollisionWithMonster()
+{
+	//int enemyCount = sizeof(GameManager::activeEnemies) / sizeof(Monster);
 }
 
 

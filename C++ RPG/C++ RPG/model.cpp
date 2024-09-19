@@ -12,4 +12,6 @@ short GameManager::yOffset = 0;
 
 Character* GameManager::player = nullptr;
 
-Monster* GameManager::activeEnemies = nullptr;
+//Monster* GameManager::activeEnemies = nullptr; // TODO: replace with std::Vector
+
+std::vector<Monster*>GameManager::enemiesInScene;
