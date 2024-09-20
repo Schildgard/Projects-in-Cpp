@@ -48,20 +48,39 @@ int*** GameController::CreateLevel(int _width, int _height)
 
 int** GameController::CreateBattleScreen()
 {
-		int** battleScreenArray = nullptr;
-		battleScreenArray = new int* [60];
+	int** battleScreenArray = nullptr;
+	battleScreenArray = new int* [21];
 
-		for (int h = 0; h < 60; h++)
-		{
-			int* width = nullptr;
-			width = new int[120];
-			for (int w = 0; w < 120; w++)
-			{
-				width[w] = 1;
-			}
-			battleScreenArray[h] = width;
-		}
-		return battleScreenArray;
+
+	int* width = nullptr;
+
+	width = new int[25] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; battleScreenArray[0] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[1] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[2] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[3] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[4] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[5] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[6] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[7] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[8] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[9] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[10] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[11] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[12] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[13] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; battleScreenArray[14] = width;
+	width = new int[25] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; battleScreenArray[15] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; battleScreenArray[16] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; battleScreenArray[17] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; battleScreenArray[18] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; battleScreenArray[19] = width;
+	width = new int[25] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; battleScreenArray[20] = width;
+
+
+
+	return battleScreenArray;
+
+
 }
 
 void GameController::MoveCharacter(Character* _player, int*** _level, int _input)
@@ -90,7 +109,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		ChangeCurrentRoom(+1); // TODO: Change to constant
 		if (GameManager::currentRoom == 1)_player->Xposition = 1;
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
-		if (GameManager::enemiesInScene.size() != 0)
+		if (!GameManager::enemiesInScene.empty())
 		{
 			Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
 		}
@@ -106,7 +125,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 
 	CheckCollisionWithMonster();
 	Visualizer::UpdateCharacterPosition(_player);
-	
+
 
 }
 
@@ -211,9 +230,15 @@ void GameController::CheckCollisionWithMonster()
 	{
 		if (GameManager::player->Xposition == GameManager::enemiesInScene[i]->Xposition && GameManager::player->Yposition == GameManager::enemiesInScene[i]->Yposition)
 		{
-			Visualizer::DrawBattleScreen(GameManager::battleField);
+			GameManager::inFight = true;
 		}
 	}
+}
+
+void GameController::MoveCursorToBattleText()
+{
+	Visualizer::RelocateCursorPosition(3, 16);
+
 }
 
 

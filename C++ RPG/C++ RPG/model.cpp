@@ -3,6 +3,8 @@
 int*** GameManager::world = 0;
 int** GameManager::battleField = 0;
 
+bool GameManager::inFight = false;
+
 int GameManager::levelWidth = 30;
 int GameManager::levelHeight = 20;
 int GameManager::currentRoom = 0;
@@ -12,7 +14,5 @@ short GameManager::xOffset = 0;
 short GameManager::yOffset = 0;
 
 Character* GameManager::player = nullptr;
-
-//Monster* GameManager::activeEnemies = nullptr; // TODO: replace with std::Vector
 
 std::vector<Monster*>GameManager::enemiesInScene;

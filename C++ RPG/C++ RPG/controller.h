@@ -18,5 +18,7 @@ namespace GameController
 	void SpawnMonsters();
 
 	void CheckCollisionWithMonster();
+
+	void MoveCursorToBattleText();
 }
 

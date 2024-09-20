@@ -1,5 +1,7 @@
 #include "view.h"
 
+#include "controller.h"
+
 void Visualizer::DrawLevel()
 {
 	std::cout << "\033[H\33[J";
@@ -52,16 +54,34 @@ void Visualizer::DrawLevel()
 
 void Visualizer::DrawBattleScreen(int** _battleScreenArray)
 {
-	CLEARSCREEN;
-	for (int h = 0; h < 60; h++)
+	CLEARSCREEN
+	for (int h = 0; h < 21; h++)
 	{
-		for (int w = 0; w < 120; w++)
+		for (int w = 0; w < 25; w++)
 		{
-			std::cout << _battleScreenArray[h][w];
+			if (_battleScreenArray[h][w] == 1)
+			{
+				std::cout << RED;
+			}
+			else std::cout << STANDARD
+				std::cout << RESET;
 		}
 		std::cout << "\n";
 	}
-	int y = getchar();
+	//WriteBattleText("this is a battle! ");
+}
+
+void Visualizer::DrawPlayerBattleOption()
+{
+	GameController::MoveCursorToBattleText();
+	std::cout << " > Attack\n";
+	std::cout << RED << RED << RESET << "   Flee";
+}
+
+void Visualizer::WriteBattleText(std::string _text)
+{
+	RelocateCursorPosition(3, 16);
+	std::cout << _text;
 }
 
 void Visualizer::UpdateCharacterPosition(Character* _char)
