@@ -7,6 +7,7 @@ static class GameManager
 {
 public:
 	static int*** world;
+	static int** battleField;
 
 	static int levelWidth;
 	static int levelHeight;

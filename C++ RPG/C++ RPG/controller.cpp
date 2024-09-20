@@ -46,6 +46,24 @@ int*** GameController::CreateLevel(int _width, int _height)
 	return array3D;
 }
 
+int** GameController::CreateBattleScreen()
+{
+		int** battleScreenArray = nullptr;
+		battleScreenArray = new int* [60];
+
+		for (int h = 0; h < 60; h++)
+		{
+			int* width = nullptr;
+			width = new int[120];
+			for (int w = 0; w < 120; w++)
+			{
+				width[w] = 1;
+			}
+			battleScreenArray[h] = width;
+		}
+		return battleScreenArray;
+}
+
 void GameController::MoveCharacter(Character* _player, int*** _level, int _input)
 {
 	Visualizer::ClearPreviousCharacterPosition(_player);
@@ -193,7 +211,7 @@ void GameController::CheckCollisionWithMonster()
 	{
 		if (GameManager::player->Xposition == GameManager::enemiesInScene[i]->Xposition && GameManager::player->Yposition == GameManager::enemiesInScene[i]->Yposition)
 		{
-			std::cout << "BÄM! ENCOUNTER ";
+			Visualizer::DrawBattleScreen(GameManager::battleField);
 		}
 	}
 }

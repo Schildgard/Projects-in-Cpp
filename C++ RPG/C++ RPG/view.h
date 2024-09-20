@@ -10,15 +10,18 @@
 #define STANDARD "\033[0m ";
 #define DOOR "\033[44m ";
 #define MONSTER "\033[45m "
+#define CLEARSCREEN std::cout << "\033[H\33[J";
 
 namespace Visualizer
 {
 	void DrawLevel();
+	void DrawBattleScreen(int** _battleScreenArray);
 
 	void UpdateCharacterPosition(Character* _char);
-
 	void UpdateMonsterPosition(Monster* _mon); // Difference to Update Character Position is, that Monsters do not leave their assigned Room.
+
 	void RelocateCursorPosition(short _xOffset, short _yOffset);
 
 	void ClearPreviousCharacterPosition(Character* _char);
+	void ClearPreviousMonsterPosition(Monster* _mon); // Prototype, merge with clearCharacterPos later
 };

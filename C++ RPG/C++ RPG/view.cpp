@@ -50,6 +50,20 @@ void Visualizer::DrawLevel()
 	}
 }
 
+void Visualizer::DrawBattleScreen(int** _battleScreenArray)
+{
+	CLEARSCREEN;
+	for (int h = 0; h < 60; h++)
+	{
+		for (int w = 0; w < 120; w++)
+		{
+			std::cout << _battleScreenArray[h][w];
+		}
+		std::cout << "\n";
+	}
+	int y = getchar();
+}
+
 void Visualizer::UpdateCharacterPosition(Character* _char)
 {
 	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
@@ -88,4 +102,18 @@ void Visualizer::ClearPreviousCharacterPosition(Character* _char)
 {
 	RelocateCursorPosition(_char->Xposition + GameManager::xOffset, _char->Yposition + GameManager::yOffset);
 	std::cout << STANDARD;
+}
+
+void Visualizer::ClearPreviousMonsterPosition(Monster* _mon)
+{
+	if (_mon->dungeonLevel == 1)
+	{
+		RelocateCursorPosition(_mon->Xposition + GameManager::levelWidth, _mon->Yposition + 0);
+		std::cout << STANDARD;
+	}
+	else if (_mon->dungeonLevel == 2)
+	{
+		RelocateCursorPosition(_mon->Xposition + GameManager::levelWidth, _mon->Yposition + GameManager::levelHeight);
+		std::cout << STANDARD;
+	}
 }

@@ -1,6 +1,7 @@
 #include "model.h"
 
 int*** GameManager::world = 0;
+int** GameManager::battleField = 0;
 
 int GameManager::levelWidth = 30;
 int GameManager::levelHeight = 20;

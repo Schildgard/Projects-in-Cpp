@@ -22,6 +22,8 @@ void Start()
 	GameManager::world = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight);
 	Visualizer::DrawLevel();
 
+	//Initialize BattleScreen
+	GameManager::battleField = GameController::CreateBattleScreen();
 
 }
 
@@ -57,13 +59,15 @@ void Update(Character* _player, int*** _level)
 			//INSERT ENEMY BEHAVIOUR HERE
 			if (GameManager::enemiesInScene.size() != 0)
 			{
-				Visualizer::ClearPreviousCharacterPosition(GameManager::enemiesInScene[0]);
+				Visualizer::ClearPreviousMonsterPosition(GameManager::enemiesInScene[0]);
 				GameManager::enemiesInScene[0]->Move();
 				Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
 				
 			}
 			FrameTimer::frameCounter = 0;
 		}
+
+		//Visualizer::DrawBattleScreen(GameManager::battleField);
 	}
 }
 
