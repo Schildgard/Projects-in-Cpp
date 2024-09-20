@@ -71,7 +71,10 @@ void Update(Character* _player, int*** _level)
 		{
 			Visualizer::DrawBattleScreen(GameManager::battleField);
 			Visualizer::DrawPlayerBattleOption();
-			int input = getchar();
+			//if(getchar()=='c')
+			//{
+			//	std::cout << "Battle End!";
+			//}
 		}
 
 
