@@ -4,6 +4,7 @@ int*** GameManager::world = 0;
 int** GameManager::battleField = 0;
 
 bool GameManager::inFight = false;
+bool GameManager::playerTurn = true;
 
 int GameManager::levelWidth = 30;
 int GameManager::levelHeight = 20;

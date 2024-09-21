@@ -55,30 +55,59 @@ void Visualizer::DrawLevel()
 void Visualizer::DrawBattleScreen(int** _battleScreenArray)
 {
 	CLEARSCREEN
-	for (int h = 0; h < 21; h++)
-	{
-		for (int w = 0; w < 25; w++)
+		for (int h = 0; h < 21; h++)
 		{
-			if (_battleScreenArray[h][w] == 1)
+			for (int w = 0; w < 25; w++)
 			{
-				std::cout << RED;
+				if (_battleScreenArray[h][w] == 1)
+				{
+					std::cout << RED;
+				}
+				else std::cout << STANDARD
+					std::cout << RESET;
 			}
-			else std::cout << STANDARD
-				std::cout << RESET;
+			std::cout << "\n";
 		}
-		std::cout << "\n";
+
+
+	RelocateCursorPosition(4, 3); //Numbers are tests
+	std::cout << "Player HP";
+	RelocateCursorPosition(5, 4);
+	for (int i = 0; i < GameManager::player->hp; i++)
+	{
+		std::cout << GREEN;
 	}
-	//WriteBattleText("this is a battle! ");
+	std::cout << RESET;
+
+	RelocateCursorPosition(4, 5); //Numbers are tests
+	std::cout << "Enemy HP";
+	RelocateCursorPosition(5, 6);
+	for (int i = 0; i < GameManager::enemiesInScene[0]->hp; i++)
+	{
+		std::cout << GREEN;
+	}
+	std::cout << RESET;
+
 }
 
-void Visualizer::DrawPlayerBattleOption()
+void Visualizer::DrawPlayerBattleOption(int* _select)
 {
-	GameController::MoveCursorToBattleText();
-	std::cout << " > Attack\n";
-	std::cout << RED << RED << RESET << "   Flee";
+	if (*_select == 1)
+	{
+		GameController::MoveCursorToBattleText();
+		std::cout << " > Attack\n";
+		std::cout << RED << RED << RESET << "   Flee";
+	}
+	else if (*_select ==2)
+	{
+		GameController::MoveCursorToBattleText();
+		std::cout << "   Attack\n";
+		std::cout << RED << RED << RESET << " > Flee";
+	}
+
 }
 
-void Visualizer::WriteBattleText(std::string _text)
+void Visualizer::WriteBattleText(std::string _text) //Probably unnecessary
 {
 	RelocateCursorPosition(3, 16);
 	std::cout << _text;

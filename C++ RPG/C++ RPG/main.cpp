@@ -31,6 +31,12 @@ void Update(Character* _player, int*** _level)
 {
 	bool gameIsRunning = true;
 	int input = 0;
+	int* select = nullptr; //represents the option when player is in battle
+
+	int currentOption = 1; // even necessary?
+	select = &currentOption;
+
+
 
 	_level = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight);
 
@@ -45,6 +51,7 @@ void Update(Character* _player, int*** _level)
 		{
 			GameController::MoveCharacter(_player, _level, input);
 		}
+
 		//WAIT FOR FRAME TIME TO END
 		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration(); //compare startFrame with currentFrame
 		while (FrameTimer::frameDuration < FrameTimer::frameTime) //wait until frameTime is reached
@@ -62,24 +69,46 @@ void Update(Character* _player, int*** _level)
 				Visualizer::ClearPreviousMonsterPosition(GameManager::enemiesInScene[0]);
 				GameManager::enemiesInScene[0]->Move();
 				Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
-				
+
 			}
 			FrameTimer::frameCounter = 0;
 		}
 
-		while(GameManager::inFight)
+
+		*select = 1; //first option is always 1
+		while (GameManager::inFight)
 		{
 			Visualizer::DrawBattleScreen(GameManager::battleField);
-			Visualizer::DrawPlayerBattleOption();
-			//if(getchar()=='c')
-			//{
-			//	std::cout << "Battle End!";
-			//}
+
+
+			while (GameManager::playerTurn)
+			{
+				Visualizer::DrawPlayerBattleOption(select);
+				CharacterController::LookForInputNotAsync(select);
+			}
+			if (*select == 1)
+			{
+				GameManager::player->Attack(GameManager::enemiesInScene[0]);
+				getchar();
+				GameManager::playerTurn = false;
+				if (GameManager::enemiesInScene[0]->hp >= 1)
+				{
+					GameManager::enemiesInScene[0]->Attack(GameManager::player);
+					GameManager::playerTurn = true;
+				}
+				else
+				{
+					GameManager::enemiesInScene.clear();
+					GameManager::inFight = false;
+				}
+			}
+			else if (*select == 2)
+			{
+				//insert flee option
+			}
+			getchar();
+			Visualizer::DrawLevel();
 		}
-
-
-
-
 	}
 }
 

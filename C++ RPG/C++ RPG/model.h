@@ -10,6 +10,7 @@ public:
 	static int** battleField;
 
 	static bool inFight;
+	static bool playerTurn;
 
 	static int levelWidth;
 	static int levelHeight;

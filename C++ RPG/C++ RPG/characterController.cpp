@@ -20,4 +20,26 @@ int CharacterController::LookForInput()
 	}
 
 	return 0;
-};
+}
+void CharacterController::LookForInputNotAsync(int* _select)
+{
+	int input = _getch();
+
+	if (input == 224)
+	{
+		input = _getch();
+		if (input== 72)
+		{
+			*_select = 1;
+		}
+		else if (input == 80)
+		{
+			*_select = 2;
+		}
+
+	}
+	else if (input == 13)
+	{
+		GameManager::playerTurn = false;
+	}
+}

@@ -18,7 +18,7 @@ namespace Visualizer
 {
 	void DrawLevel();
 	void DrawBattleScreen(int** _battleScreenArray);
-	void DrawPlayerBattleOption();
+	void DrawPlayerBattleOption(int* _select);
 
 	void WriteBattleText(std::string _text);
 

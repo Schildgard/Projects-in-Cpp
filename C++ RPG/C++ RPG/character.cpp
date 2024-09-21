@@ -8,8 +8,8 @@ void Character :: GetDamage(int _damage) {
 	hp -= damage;
 	hp <= 0 ? hp = 0 : hp = hp;
 
-	GameController::MoveCursorToBattleText();
-	std::cout << name << " takes " << damage << " damage\n";
+	std::cout << RED " " << RESET << " " << name << " takes " << damage << " damage\n";
+	//std::cout << "         ";
 
 	if (hp == 0) { Die(); }
 
