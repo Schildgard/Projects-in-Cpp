@@ -1,6 +1,7 @@
 #pragma once
 #include "character.h"
 #include "model.h"
+#include "monster.h"
 #include "zombie.h"
 
 
@@ -20,5 +21,7 @@ namespace GameController
 	void CheckCollisionWithMonster();
 
 	void MoveCursorToBattleText();
+
+	void StartFight(Monster* _enemy);
 }
 

@@ -66,9 +66,13 @@ void Update(Character* _player, int*** _level)
 			//INSERT ENEMY BEHAVIOUR HERE
 			if (!GameManager::enemiesInScene.empty())
 			{
-				Visualizer::ClearPreviousMonsterPosition(GameManager::enemiesInScene[0]);
-				GameManager::enemiesInScene[0]->Move();
-				Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
+
+				for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
+				{
+					Visualizer::ClearPreviousCharacterPosition(GameManager::enemiesInScene[i]);
+					GameManager::enemiesInScene[i]->Move();
+					Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[i]);
+				}
 
 			}
 			FrameTimer::frameCounter = 0;
@@ -88,17 +92,17 @@ void Update(Character* _player, int*** _level)
 			}
 			if (*select == 1)
 			{
-				GameManager::player->Attack(GameManager::enemiesInScene[0]);
+				GameManager::player->Attack(GameManager::opponent);
 				getchar();
 				GameManager::playerTurn = false;
-				if (GameManager::enemiesInScene[0]->hp >= 1)
+				if (GameManager::opponent->hp >= 1)
 				{
-					GameManager::enemiesInScene[0]->Attack(GameManager::player);
+					GameManager::opponent->Attack(GameManager::player);
 					GameManager::playerTurn = true;
 				}
 				else
 				{
-					GameManager::enemiesInScene.clear();
+					GameManager::enemiesInScene.erase(GameManager::enemiesInScene.begin()+ GameManager::opponentsIndex); //remove enemy after combat
 					GameManager::inFight = false;
 				}
 			}

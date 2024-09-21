@@ -11,6 +11,8 @@ public:
 
 	static bool inFight;
 	static bool playerTurn;
+	static Monster* opponent;
+	static int opponentsIndex; //IndexPosition in EnemiesInScene array
 
 	static int levelWidth;
 	static int levelHeight;

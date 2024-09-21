@@ -19,11 +19,13 @@ namespace Visualizer
 	void DrawLevel();
 	void DrawBattleScreen(int** _battleScreenArray);
 	void DrawPlayerBattleOption(int* _select);
+	void DrawGameOverScreen();
 
 	void WriteBattleText(std::string _text);
 
 	void UpdateCharacterPosition(Character* _char);
 	void UpdateMonsterPosition(Monster* _mon); // Difference to Update Character Position is, that Monsters do not leave their assigned Room.
+	void UpdateAllMonsterPositions();
 
 	void RelocateCursorPosition(short _xOffset, short _yOffset);
 

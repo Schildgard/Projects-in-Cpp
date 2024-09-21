@@ -18,4 +18,5 @@ public:
 	};
 
 	virtual void Attack(Character* _target);
+	virtual void Die() override;
 };

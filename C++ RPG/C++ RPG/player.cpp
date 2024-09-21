@@ -7,3 +7,10 @@ void Player::Attack(Character* _target)
 	_target->GetDamage(str);
 
 };
+
+void Player::Die()
+{
+	Visualizer::DrawGameOverScreen();
+	//Show GameOverScreen
+
+}

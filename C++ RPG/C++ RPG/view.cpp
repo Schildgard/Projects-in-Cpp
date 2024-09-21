@@ -107,6 +107,14 @@ void Visualizer::DrawPlayerBattleOption(int* _select)
 
 }
 
+void Visualizer::DrawGameOverScreen()
+{
+	CLEARSCREEN;
+	RelocateCursorPosition(5, 5);
+	std::cout << " GAME OVER";
+	getchar();
+}
+
 void Visualizer::WriteBattleText(std::string _text) //Probably unnecessary
 {
 	RelocateCursorPosition(3, 16);
@@ -138,6 +146,13 @@ void Visualizer::UpdateMonsterPosition(Monster* _mon)
 		std::cout << STANDARD;
 	}
 
+}
+void Visualizer::UpdateAllMonsterPositions()
+{
+	for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
+	{
+		UpdateMonsterPosition(GameManager::enemiesInScene[i]);
+	}
 }
 
 void Visualizer::RelocateCursorPosition(short _xOffset, short _yOffset)

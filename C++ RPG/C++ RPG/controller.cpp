@@ -111,7 +111,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		if (!GameManager::enemiesInScene.empty())
 		{
-			Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[0]);
+			Visualizer::UpdateAllMonsterPositions();
 		}
 		break;
 	case 4:
@@ -203,9 +203,10 @@ void GameController::OpenNewRoom()
 
 void GameController::SpawnMonsters()
 {
-	if (GameManager::currentRoom == 0)
+	if (GameManager::currentRoom == 0) //When entering room 1 from room 0
 	{
 		Zombie* Zombie01 = new Zombie();
+		Zombie* Zombie02 = new Zombie();
 
 		switch (GameManager::roomCount)
 		{
@@ -214,7 +215,11 @@ void GameController::SpawnMonsters()
 		case 2:
 			Zombie01->Xposition = 5;
 			Zombie01->Yposition = 5;
+			Zombie02->Xposition = 10;
+			Zombie02->Yposition = 10;
+			
 			GameManager::enemiesInScene.push_back(Zombie01);
+			GameManager::enemiesInScene.push_back(Zombie02);
 			break;
 		case 3:
 			break;
@@ -230,9 +235,18 @@ void GameController::CheckCollisionWithMonster()
 	{
 		if (GameManager::player->Xposition == GameManager::enemiesInScene[i]->Xposition && GameManager::player->Yposition == GameManager::enemiesInScene[i]->Yposition)
 		{
-			GameManager::inFight = true;
+			GameManager::opponentsIndex = i; //save the index of monster to remove it after fight
+			StartFight(GameManager::enemiesInScene[i]);
+			
 		}
 	}
+}
+
+void GameController::StartFight(Monster* _enemy)
+{
+	GameManager::opponent = _enemy;
+	GameManager::inFight = true;
+
 }
 
 void GameController::MoveCursorToBattleText()
