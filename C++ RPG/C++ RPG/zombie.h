@@ -1,6 +1,7 @@
 #pragma once
 #include "monster.h"
 
+
 class Zombie : public Monster {
 public:
 	Zombie() {
@@ -10,6 +11,7 @@ public:
 		def = 2;
 		spd = 2;
 		exp = 4;
+		colorCode = "\033[45m ";
 
 		dungeonLevel = 1;
 		moveSteps = 3;

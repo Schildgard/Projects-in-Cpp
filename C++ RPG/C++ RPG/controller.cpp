@@ -102,11 +102,11 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		_player->Xposition = *xDisplacement;
 		break;
 	case 3:
-		if (GameManager::roomCount < 3) // Open new Room if not opened yet
+		if (GameManager::roomCount < 3 && GameManager::roomCleared || GameManager::currentRoom == 0) // Test Change later today
 		{
 			OpenNewRoom();
+			ChangeCurrentRoom(+1); // TODO: Change to constant
 		}
-		ChangeCurrentRoom(+1); // TODO: Change to constant
 		if (GameManager::currentRoom == 1)_player->Xposition = 1;
 		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
 		if (!GameManager::enemiesInScene.empty())
@@ -145,14 +145,14 @@ int GameController::CheckTargetPosition(Character* _player, int*** _level, int* 
 		}
 		break;
 	case -1:
-		if (_player->Yposition < GameManager::levelHeight - 2 || _level[GameManager::currentRoom][_player->Yposition + 1][_player->Xposition] == 3) //check if player is on lower edge
+		if (_player->Yposition < GameManager::levelHeight - 2 || _level[GameManager::currentRoom][_player->Yposition + 1][_player->Xposition] == 3 && GameManager::roomCleared) //check if player is on lower edge
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition + 1][_player->Xposition];
 			*_yDisplacement = _player->Yposition++;
 		}
 		break;
 	case 2:
-		if (_player->Xposition < GameManager::levelWidth - 2 || _level[GameManager::currentRoom][_player->Yposition][_player->Xposition + 1] == 3) //check if player is on right edge or if player enters a door
+		if (_player->Xposition < GameManager::levelWidth - 2 || _level[GameManager::currentRoom][_player->Yposition][_player->Xposition + 1] == 3 && GameManager::roomCleared) //check if player is on right edge or if player enters a door
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition][_player->Xposition + 1];
 			*_xDisplacement = _player->Xposition++;
@@ -217,7 +217,7 @@ void GameController::SpawnMonsters()
 			Zombie01->Yposition = 5;
 			Zombie02->Xposition = 10;
 			Zombie02->Yposition = 10;
-			
+
 			GameManager::enemiesInScene.push_back(Zombie01);
 			GameManager::enemiesInScene.push_back(Zombie02);
 			break;
@@ -227,6 +227,26 @@ void GameController::SpawnMonsters()
 			break;
 		}
 	}
+	else if (GameManager::currentRoom == 1) //When entering room2 from room1
+	{
+		Kobold* Kobold01 = new Kobold();
+		Kobold* Kobold02 = new Kobold();
+		Kobold* Kobold03 = new Kobold();
+
+		Kobold01->Xposition = 8;
+		Kobold01->Yposition = 12;
+		Kobold02->Xposition = 2;
+		Kobold02->Yposition = 3;
+		Kobold03->Xposition = 6;
+		Kobold03->Yposition = 8;
+
+		GameManager::enemiesInScene.push_back(Kobold01);
+		GameManager::enemiesInScene.push_back(Kobold02);
+		GameManager::enemiesInScene.push_back(Kobold03);
+
+	}
+
+	GameManager::roomCleared = false;
 }
 
 void GameController::CheckCollisionWithMonster()
@@ -237,7 +257,7 @@ void GameController::CheckCollisionWithMonster()
 		{
 			GameManager::opponentsIndex = i; //save the index of monster to remove it after fight
 			StartFight(GameManager::enemiesInScene[i]);
-			
+
 		}
 	}
 }

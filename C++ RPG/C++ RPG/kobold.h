@@ -11,6 +11,11 @@ public:
 		spd = 3;
 		exp = 3;
 
+		colorCode = "\033[43m ";
+		dungeonLevel = 2;
+		moveSteps = 2;
+		direction = 1;
+
 	};
 
 	 virtual void Attack(Character* _target) override;

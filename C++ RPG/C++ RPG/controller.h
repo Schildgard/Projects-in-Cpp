@@ -3,6 +3,7 @@
 #include "model.h"
 #include "monster.h"
 #include "zombie.h"
+#include "kobold.h"
 
 
 namespace GameController

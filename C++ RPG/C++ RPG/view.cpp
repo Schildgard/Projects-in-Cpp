@@ -54,6 +54,7 @@ void Visualizer::DrawLevel()
 
 void Visualizer::DrawBattleScreen(int** _battleScreenArray)
 {
+	//OUTLINE OF BATTLESCREEN
 	CLEARSCREEN
 		for (int h = 0; h < 21; h++)
 		{
@@ -69,7 +70,7 @@ void Visualizer::DrawBattleScreen(int** _battleScreenArray)
 			std::cout << "\n";
 		}
 
-
+	// HP BARS
 	RelocateCursorPosition(4, 3); //Numbers are tests
 	std::cout << "Player HP";
 	RelocateCursorPosition(5, 4);
@@ -80,9 +81,9 @@ void Visualizer::DrawBattleScreen(int** _battleScreenArray)
 	std::cout << RESET;
 
 	RelocateCursorPosition(4, 5); //Numbers are tests
-	std::cout << "Enemy HP";
+	std::cout << GameManager::opponent->name << " HP";
 	RelocateCursorPosition(5, 6);
-	for (int i = 0; i < GameManager::enemiesInScene[0]->hp; i++)
+	for (int i = 0; i < GameManager::opponent->hp; i++)
 	{
 		std::cout << GREEN;
 	}
@@ -134,14 +135,14 @@ void Visualizer::UpdateMonsterPosition(Monster* _mon)
 	if (_mon->dungeonLevel == 1)
 	{
 		RelocateCursorPosition(_mon->Xposition + GameManager::levelWidth, _mon->Yposition + 0);
-		std::cout << MONSTER;
+		std::cout << _mon->colorCode;
 		RelocateCursorPosition(0, GameManager::levelHeight + 1); //relocate cursor to text field
 		std::cout << STANDARD;
 	}
 	else if (_mon->dungeonLevel == 2)
 	{
 		RelocateCursorPosition(_mon->Xposition + GameManager::levelWidth, _mon->Yposition + GameManager::levelHeight);
-		std::cout << MONSTER;
+		std::cout << _mon->colorCode;
 		RelocateCursorPosition(0, GameManager::levelHeight + 1); //relocate cursor to text field
 		std::cout << STANDARD;
 	}

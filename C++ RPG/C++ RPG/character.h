@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <string>
+#include <string.h>
 
 class Character {
 public:
@@ -13,6 +13,8 @@ public:
 
 	int Yposition;
 	int Xposition;
+
+	std::string colorCode;
 
 	virtual void Attack(Character* _target) = 0;
 	virtual void GetDamage(int _damage);

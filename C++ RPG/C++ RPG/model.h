@@ -11,9 +11,10 @@ public:
 
 	static bool inFight;
 	static bool playerTurn;
-	static Monster* opponent;
-	static int opponentsIndex; //IndexPosition in EnemiesInScene array
+	static bool roomCleared;
 
+
+	static int opponentsIndex; //IndexPosition in EnemiesInScene array
 	static int levelWidth;
 	static int levelHeight;
 	static int roomCount;
@@ -22,6 +23,7 @@ public:
 	static short xOffset;
 	static short yOffset;
 
+	static Monster* opponent;
 	static Character* player;
 
 	static std::vector<Monster*> enemiesInScene;

@@ -1,6 +1,6 @@
 #include "character.h"
-
 #include "controller.h"
+
 
 void Character :: GetDamage(int _damage) {
 	int damage = _damage - def;

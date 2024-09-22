@@ -52,12 +52,14 @@ void Update(Character* _player, int*** _level)
 			GameController::MoveCharacter(_player, _level, input);
 		}
 
+
 		//WAIT FOR FRAME TIME TO END
 		FrameTimer::frameDuration = FrameTimer::CheckFrameDuration(); //compare startFrame with currentFrame
 		while (FrameTimer::frameDuration < FrameTimer::frameTime) //wait until frameTime is reached
 		{
 			FrameTimer::frameDuration = FrameTimer::CheckFrameDuration();
 		}
+
 
 		//COUNT FRAMES TO CONTROL ENEMY BEHAVIOUR
 		FrameTimer::frameCounter++;
@@ -69,7 +71,7 @@ void Update(Character* _player, int*** _level)
 
 				for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
 				{
-					Visualizer::ClearPreviousCharacterPosition(GameManager::enemiesInScene[i]);
+					Visualizer::ClearPreviousMonsterPosition(GameManager::enemiesInScene[i]);
 					GameManager::enemiesInScene[i]->Move();
 					Visualizer::UpdateMonsterPosition(GameManager::enemiesInScene[i]);
 				}
@@ -79,18 +81,19 @@ void Update(Character* _player, int*** _level)
 		}
 
 
+		//BATTLE SCENE
 		*select = 1; //first option is always 1
 		while (GameManager::inFight)
 		{
 			Visualizer::DrawBattleScreen(GameManager::battleField);
 
-
+			//PLAYER TURN
 			while (GameManager::playerTurn)
 			{
 				Visualizer::DrawPlayerBattleOption(select);
 				CharacterController::LookForInputNotAsync(select);
 			}
-			if (*select == 1)
+			if (*select == 1) // PLAYER ATTACK
 			{
 				GameManager::player->Attack(GameManager::opponent);
 				getchar();
@@ -104,9 +107,13 @@ void Update(Character* _player, int*** _level)
 				{
 					GameManager::enemiesInScene.erase(GameManager::enemiesInScene.begin()+ GameManager::opponentsIndex); //remove enemy after combat
 					GameManager::inFight = false;
+					if (GameManager::enemiesInScene.empty())
+					{
+						GameManager::roomCleared = true;
+					}
 				}
 			}
-			else if (*select == 2)
+			else if (*select == 2) //PLAYER FLEE
 			{
 				//insert flee option
 			}

@@ -12,6 +12,7 @@
 #define WHITE "\033[47m ";
 #define DOOR "\033[44m ";
 #define MONSTER "\033[45m "
+#define KOBOLD "\033[43m "
 #define CLEARSCREEN std::cout << "\033[H\33[J";
 
 namespace Visualizer
