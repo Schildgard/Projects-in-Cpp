@@ -253,7 +253,7 @@ void GameController::CheckCollisionWithMonster()
 {
 	for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
 	{
-		if (GameManager::player->Xposition == GameManager::enemiesInScene[i]->Xposition && GameManager::player->Yposition == GameManager::enemiesInScene[i]->Yposition)
+		if (GameManager::player->Xposition == GameManager::enemiesInScene[i]->Xposition && GameManager::player->Yposition == GameManager::enemiesInScene[i]->Yposition && GameManager::currentRoom == GameManager::enemiesInScene[i]->dungeonLevel)
 		{
 			GameManager::opponentsIndex = i; //save the index of monster to remove it after fight
 			StartFight(GameManager::enemiesInScene[i]);
