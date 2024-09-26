@@ -109,13 +109,12 @@ void Update(Character* _player, int*** _level)
 				}
 				else
 				{
-					GameManager::enemiesInScene.erase(GameManager::enemiesInScene.begin()+ GameManager::opponentsIndex); //remove enemy after combat
+					//GameManager::enemiesInScene.erase(GameManager::enemiesInScene.begin() +0); //remove enemy after combat
+					GameController::RemoveEnemyFromList();
 					GameManager::inFight = false;
-					if (GameManager::enemiesInScene.empty())
-					{
-						GameManager::roomCleared = true;
-					}
-					//GameController::CheckEnemyInLevel(); //CHECK IF ALL ENEMIES IN ROOM ARE DEFEATED AND SET BOOL TO IT
+
+					GameController::CheckEnemyInLevel(); //This Function also sets the room condition
+
 				}
 			}
 			else if (*select == 2) //PLAYER FLEE

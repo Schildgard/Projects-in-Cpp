@@ -24,6 +24,7 @@ namespace GameController
 	bool CheckDoorStatus();
 	bool CheckRoomClear();
 	void CheckEnemyInLevel();
+	void RemoveEnemyFromList();
 
 	// BATTLE
 	void CheckCollisionWithMonster();

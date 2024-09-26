@@ -175,6 +175,7 @@ int GameController::CheckTargetPosition(Character* _player, int*** _level, int _
 	return targetPositionValue;
 
 }
+
 void GameController::ChangeCharacterPosition(int _input, int* _yDisplacement, int* _xDisplacement)
 {
 	switch (_input)
@@ -195,7 +196,6 @@ void GameController::ChangeCharacterPosition(int _input, int* _yDisplacement, in
 		break;
 	}
 };
-
 
 void GameController::ChangeCurrentRoom(int _multiplier)
 {
@@ -272,7 +272,7 @@ void GameController::SpawnMonsters()
 			Zombie02->Xposition = 10;
 			Zombie02->Yposition = 10;
 
-			GameManager::enemiesInScene.push_back(Zombie01);
+			GameManager::enemiesInScene.push_back(Zombie01);  //IS GOING TO BNE REMOVED
 			GameManager::enemiesInScene.push_back(Zombie02);
 
 			GameManager::enemiesInLevel1.push_back(Zombie01);
@@ -282,8 +282,8 @@ void GameController::SpawnMonsters()
 			break;
 		default:
 			break;
-			GameManager::room1Clear = false;
 		}
+			GameManager::room1Clear = false;
 	}
 	else if (GameManager::currentRoom == 1) //When entering room2 from room1
 	{
@@ -358,6 +358,23 @@ void GameController::CheckEnemyInLevel()
 		GameManager::room2Clear = GameManager::enemiesInLevel2.empty();
 	}
 }
+
+void GameController::RemoveEnemyFromList()
+{
+	if (GameManager::currentRoom == 0)
+	{
+		GameManager::enemiesInScene.erase(GameManager::enemiesInScene.begin() + 0);
+	}
+	if (GameManager::currentRoom == 1)
+	{
+		GameManager::enemiesInLevel1.erase(GameManager::enemiesInLevel1.begin() + 0);
+	}
+	if (GameManager::currentRoom == 2)
+	{
+		GameManager::enemiesInLevel2.erase(GameManager::enemiesInLevel2.begin() + 0);
+	}
+}
+
 
 void GameController::CheckCollisionWithMonster()
 {
