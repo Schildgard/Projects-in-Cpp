@@ -4,7 +4,6 @@
 #include "characterController.h"
 
 
-
 int main()
 {
 
@@ -14,7 +13,6 @@ int main()
 
 	return 0;
 }
-
 
 void Start()
 {
@@ -36,7 +34,6 @@ void Update(Character* _player, int*** _level)
 
 	int currentOption = 1; // even necessary?
 	select = &currentOption;
-
 
 
 	_level = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight);

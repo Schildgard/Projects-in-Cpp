@@ -30,5 +30,4 @@ Character* GameManager::player = nullptr;
 Monster* GameManager::opponent = nullptr;
 
 std::vector<Monster*>GameManager::enemiesInScene;
-std::vector<Monster*>GameManager:: enemiesInLevel1;
-std::vector<Monster*>GameManager:: enemiesInLevel2;
+

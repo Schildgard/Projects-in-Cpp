@@ -349,12 +349,10 @@ void GameController::CheckEnemyInLevel()
 	// ITERATE THOUGH ENEMIES IN SCENE AND CHECK FOR DUNGEON LEVEL. IF IS EMPTY SET ROOM CLEAR BOOL
 	for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
 	{
-		
 		if (GameManager::enemiesInScene[i]->dungeonLevel == GameManager::currentRoom)
 		{
 			monsterCount++;
 		}
-		
 	}
 	if (monsterCount <= 0)
 	{
@@ -389,7 +387,6 @@ void GameController::RemoveEnemyFromList()
 		GameManager::enemiesInLevel2.erase(GameManager::enemiesInLevel2.begin() + 0);
 	}
 }
-
 
 void GameController::CheckCollisionWithMonster()
 {

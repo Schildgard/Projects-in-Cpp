@@ -24,9 +24,6 @@ public:
 	static bool room2Clear;
 
 
-
-
-
 	static int opponentsIndex; //IndexPosition in EnemiesInScene array
 	static int levelWidth;
 	static int levelHeight;
@@ -40,8 +37,5 @@ public:
 	static Character* player;
 
 	static std::vector<Monster*> enemiesInScene;
-	static std::vector<Monster*> enemiesInLevel1;
-	static std::vector<Monster*> enemiesInLevel2;
-
 };
 
