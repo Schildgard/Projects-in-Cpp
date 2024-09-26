@@ -7,6 +7,7 @@
 
 int main()
 {
+
 	Start();
 	Update(GameManager::player, GameManager::world);
 	Exit();
@@ -53,7 +54,7 @@ void Update(Character* _player, int*** _level)
 
 			std::cout << "Current Room: " << GameManager::currentRoom << "\n";
 			std::cout << "Door Open: " << GameController::CheckDoorStatus() << "\n";
-			std::cout << "Rool Clear : " << GameController::CheckRoomClear();
+			std::cout << "Room Clear : " << GameController::CheckRoomClear();
 		}
 
 
@@ -102,19 +103,20 @@ void Update(Character* _player, int*** _level)
 				GameManager::player->Attack(GameManager::opponent);
 				getchar();
 				GameManager::playerTurn = false;
-				if (GameManager::opponent->hp >= 1)
+				if (GameManager::opponent->hp >= 1) // IF ENEMY SURVIVES
 				{
 					GameManager::opponent->Attack(GameManager::player);
 					GameManager::playerTurn = true;
 				}
-				else
+				else // IF ENEMY DIED
 				{
-					//GameManager::enemiesInScene.erase(GameManager::enemiesInScene.begin() +0); //remove enemy after combat
-					GameController::RemoveEnemyFromList();
+
+					//GET ENEMY LIST ID AND REMOVE ENEMY FROM LIST
+					GameManager::enemiesInScene.erase(std::ranges::find(GameManager::enemiesInScene, GameManager::opponent)); //remove enemy after combat
+					// LEAVE FIGHT
 					GameManager::inFight = false;
-
-					GameController::CheckEnemyInLevel(); //This Function also sets the room condition
-
+					//CHECK IF ROOM IS CLEAR
+					GameController::CheckEnemyInLevel();
 				}
 			}
 			else if (*select == 2) //PLAYER FLEE

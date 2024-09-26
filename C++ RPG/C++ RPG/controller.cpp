@@ -181,16 +181,16 @@ void GameController::ChangeCharacterPosition(int _input, int* _yDisplacement, in
 	switch (_input)
 	{
 	case 1:  // UP
-		*_yDisplacement = GameManager::player->Yposition--;
+		*_yDisplacement = --GameManager::player->Yposition;
 		break;
 	case -1: //DOWN		 
-		*_yDisplacement = GameManager::player->Yposition++;
+		*_yDisplacement = ++GameManager::player->Yposition;
 		break;
 	case 2: //RIGHT		 
-		*_xDisplacement = GameManager::player->Xposition++;
+		*_xDisplacement = ++GameManager::player->Xposition;
 		break;
 	case -2: //LEFT		  
-		*_xDisplacement = GameManager::player->Xposition--;
+		*_xDisplacement = --GameManager::player->Xposition;
 		break;
 	default:
 		break;
@@ -275,15 +275,15 @@ void GameController::SpawnMonsters()
 			GameManager::enemiesInScene.push_back(Zombie01);  //IS GOING TO BNE REMOVED
 			GameManager::enemiesInScene.push_back(Zombie02);
 
-			GameManager::enemiesInLevel1.push_back(Zombie01);
-			GameManager::enemiesInLevel1.push_back(Zombie02);
+			//GameManager::enemiesInLevel1.push_back(Zombie01);
+			//GameManager::enemiesInLevel1.push_back(Zombie02);
 			break;
 		case 3:
 			break;
 		default:
 			break;
 		}
-			GameManager::room1Clear = false;
+		GameManager::room1Clear = false;
 	}
 	else if (GameManager::currentRoom == 1) //When entering room2 from room1
 	{
@@ -302,9 +302,9 @@ void GameController::SpawnMonsters()
 		GameManager::enemiesInScene.push_back(Kobold02);
 		GameManager::enemiesInScene.push_back(Kobold03);
 
-		GameManager::enemiesInLevel2.push_back(Kobold01);
-		GameManager::enemiesInLevel2.push_back(Kobold02);
-		GameManager::enemiesInLevel2.push_back(Kobold03);
+		//GameManager::enemiesInLevel2.push_back(Kobold01);
+		//GameManager::enemiesInLevel2.push_back(Kobold02);
+		//GameManager::enemiesInLevel2.push_back(Kobold03);
 
 		GameManager::room2Clear = false;
 
@@ -345,17 +345,32 @@ bool GameController::CheckRoomClear()
 
 void GameController::CheckEnemyInLevel()
 {
-	if (GameManager::currentRoom == 0)
+	int monsterCount = 0;
+	// ITERATE THOUGH ENEMIES IN SCENE AND CHECK FOR DUNGEON LEVEL. IF IS EMPTY SET ROOM CLEAR BOOL
+	for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
 	{
-		GameManager::roomClear = GameManager::enemiesInScene.empty();
+		
+		if (GameManager::enemiesInScene[i]->dungeonLevel == GameManager::currentRoom)
+		{
+			monsterCount++;
+		}
+		
 	}
-	if (GameManager::currentRoom == 1)
+	if (monsterCount <= 0)
 	{
-		GameManager::room1Clear = GameManager::enemiesInLevel1.empty();
-	}
-	if (GameManager::currentRoom == 2)
-	{
-		GameManager::room2Clear = GameManager::enemiesInLevel2.empty();
+		//SET ROOM CLEAR OF CURRENT LEVEL TO TRUE
+		if (GameManager::currentRoom == 0)
+		{
+			GameManager::roomClear = true;
+		}
+		else if (GameManager::currentRoom == 1)
+		{
+			GameManager::room1Clear = true;
+		}
+		else if (GameManager::currentRoom == 2)
+		{
+			GameManager::room2Clear = true;
+		}
 	}
 }
 

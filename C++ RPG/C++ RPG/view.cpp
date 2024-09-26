@@ -182,3 +182,7 @@ void Visualizer::ClearPreviousMonsterPosition(Monster* _mon)
 		std::cout << STANDARD;
 	}
 }
+
+
+
+
