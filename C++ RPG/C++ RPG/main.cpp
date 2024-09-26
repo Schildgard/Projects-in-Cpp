@@ -50,6 +50,10 @@ void Update(Character* _player, int*** _level)
 		if (input != 0)
 		{
 			GameController::MoveCharacter(_player, _level, input);
+
+			std::cout << "Current Room: " << GameManager::currentRoom << "\n";
+			std::cout << "Door Open: " << GameController::CheckDoorStatus() << "\n";
+			std::cout << "Rool Clear : " << GameController::CheckRoomClear();
 		}
 
 
@@ -111,6 +115,7 @@ void Update(Character* _player, int*** _level)
 					{
 						GameManager::roomCleared = true;
 					}
+					//GameController::CheckEnemyInLevel(); //CHECK IF ALL ENEMIES IN ROOM ARE DEFEATED AND SET BOOL TO IT
 				}
 			}
 			else if (*select == 2) //PLAYER FLEE

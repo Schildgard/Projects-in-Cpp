@@ -90,25 +90,35 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 	int* yDisplacement = &_player->Yposition;
 	int* xDisplacement = &_player->Xposition;
 
-	int targetPositionValue = CheckTargetPosition(_player, _level, yDisplacement, xDisplacement, _input);
+	int targetPositionValue = CheckTargetPosition(_player, _level, _input);
+
+
 	switch (targetPositionValue)
 	{
-	case 0: // if targetPosition is normal ground
-		_player->Yposition = *yDisplacement;
-		_player->Xposition = *xDisplacement;
+	case 0: // NORMAL GROUND
+		//CHANGE CHARACTER POSITION
+		ChangeCharacterPosition(_input, yDisplacement, xDisplacement);
 		break;
-	case 1: // if targetPosition is a Wall, Displacement remains unchanged so the player does not move
-		_player->Yposition = *yDisplacement;
-		_player->Xposition = *xDisplacement;
+	case 1: //WALL
+		// DO NOT MOVE CHARACTER
 		break;
-	case 3:
-		if (GameManager::roomCount < 3 && GameManager::roomCleared || GameManager::currentRoom == 0) // Test Change later today
+	case 3:// DOOR
+		//DO DIFFERENT CHECKS
+		if (CheckDoorStatus() == false) //IF DOOR IS CLOSED
 		{
-			OpenNewRoom();
-			ChangeCurrentRoom(+1); // TODO: Change to constant
+			if (CheckRoomClear() == true) // IF ROOM IS CLEARED
+			{
+				OpenNewRoom();
+				ChangeCurrentRoom(+1); // TODO: Change to constant
+				ChangeCharacterPosition(_input, yDisplacement, xDisplacement);
+			}
+			else break;
 		}
-		if (GameManager::currentRoom == 1)_player->Xposition = 1;
-		else if (GameManager::currentRoom == 2) _player->Yposition = 1;
+		else //IF DOOR IS OPEN
+		{
+			ChangeCurrentRoom(+1);
+			ChangeCharacterPosition(_input, yDisplacement, xDisplacement);
+		}
 		if (!GameManager::enemiesInScene.empty())
 		{
 			Visualizer::UpdateAllMonsterPositions();
@@ -116,8 +126,6 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		break;
 	case 4:
 		ChangeCurrentRoom(-1); // TODO: Change to constant
-		if (GameManager::currentRoom == 0)_player->Xposition = GameManager::levelWidth - 2;
-		else if (GameManager::currentRoom == 1) _player->Yposition = GameManager::levelHeight - 2;
 		break;
 	default:
 		break;
@@ -129,11 +137,10 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 
 }
 
-int GameController::CheckTargetPosition(Character* _player, int*** _level, int* _yDisplacement, int* _xDisplacement, int _input)
+int GameController::CheckTargetPosition(Character* _player, int*** _level, int _input)
 {
-	int currentPositionValue = _level[GameManager::currentRoom][_player->Yposition][_player->Xposition];
+	//CHECKS TARGET POSITION FOR ITS VALUE IN WORLD ARRAY
 	int targetPositionValue = 1;
-
 
 	switch (_input)
 	{
@@ -141,28 +148,24 @@ int GameController::CheckTargetPosition(Character* _player, int*** _level, int* 
 		if (_player->Yposition > 1 || _level[GameManager::currentRoom][_player->Yposition - 1][_player->Xposition] == 4) //check if player is on upper edge
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition - 1][_player->Xposition];
-			*_yDisplacement = _player->Yposition--;
 		}
 		break;
 	case -1:
 		if (_player->Yposition < GameManager::levelHeight - 2 || _level[GameManager::currentRoom][_player->Yposition + 1][_player->Xposition] == 3 && GameManager::roomCleared) //check if player is on lower edge
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition + 1][_player->Xposition];
-			*_yDisplacement = _player->Yposition++;
 		}
 		break;
 	case 2:
 		if (_player->Xposition < GameManager::levelWidth - 2 || _level[GameManager::currentRoom][_player->Yposition][_player->Xposition + 1] == 3 && GameManager::roomCleared) //check if player is on right edge or if player enters a door
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition][_player->Xposition + 1];
-			*_xDisplacement = _player->Xposition++;
 		}
 		break;
 	case -2:
 		if (_player->Xposition > 1 || _level[GameManager::currentRoom][_player->Yposition][_player->Xposition - 1] == 4) //check if player is on left edge and / or if he enters a mirror Door
 		{
 			targetPositionValue = _level[GameManager::currentRoom][_player->Yposition][_player->Xposition - 1];
-			*_xDisplacement = _player->Xposition--;
 		}
 		break;
 	default:
@@ -171,13 +174,36 @@ int GameController::CheckTargetPosition(Character* _player, int*** _level, int* 
 
 	return targetPositionValue;
 
+}
+void GameController::ChangeCharacterPosition(int _input, int* _yDisplacement, int* _xDisplacement)
+{
+	switch (_input)
+	{
+	case 1:  // UP
+		*_yDisplacement = GameManager::player->Yposition--;
+		break;
+	case -1: //DOWN		 
+		*_yDisplacement = GameManager::player->Yposition++;
+		break;
+	case 2: //RIGHT		 
+		*_xDisplacement = GameManager::player->Xposition++;
+		break;
+	case -2: //LEFT		  
+		*_xDisplacement = GameManager::player->Xposition--;
+		break;
+	default:
+		break;
+	}
 };
+
 
 void GameController::ChangeCurrentRoom(int _multiplier)
 {
 	//either 1 for next level or -1 for previous level
 	GameManager::currentRoom += _multiplier;
 
+
+	// CHANGE CURRENT ROOM INFORMATION AND OFFSET
 	switch (GameManager::currentRoom)
 	{
 	case 0:
@@ -192,6 +218,21 @@ void GameController::ChangeCurrentRoom(int _multiplier)
 		GameManager::yOffset = GameManager::levelHeight;
 		break;
 	}
+
+	// SET PLAYER POSITION AT CORRECT SIDE OF THE NEW ROOM
+
+	if (_multiplier == +1) // MULTIPLIER IS +1 IF PLAYERS ENTERS A DOOR
+	{
+		if (GameManager::currentRoom == 1)GameManager::player->Xposition = 1;
+		else if (GameManager::currentRoom == 2) GameManager::player->Yposition = 1;
+	}
+
+	if (_multiplier == -1) //MULTIPLIER IS -1 IF PLAYER BACKTRACKS THROUGH A DOOR
+	{
+		if (GameManager::currentRoom == 0)GameManager::player->Xposition = GameManager::levelWidth - 2;
+		else if (GameManager::currentRoom == 1) GameManager::player->Yposition = GameManager::levelHeight - 2;
+	}
+
 }
 
 void GameController::OpenNewRoom()
@@ -199,6 +240,19 @@ void GameController::OpenNewRoom()
 	GameManager::roomCount = GameManager::currentRoom + 2;//+2 because currentRoomIndex starts at 0 while roomCount starts at 1
 	SpawnMonsters();
 	Visualizer::DrawLevel();
+
+	if (GameManager::currentRoom == 0)
+	{
+		GameManager::doorOpen = true;
+	}
+	if (GameManager::currentRoom == 1)
+	{
+		GameManager::door1Open = true;
+	}
+	if (GameManager::currentRoom == 2)
+	{
+		GameManager::door2Open = true;
+	}
 }
 
 void GameController::SpawnMonsters()
@@ -220,11 +274,15 @@ void GameController::SpawnMonsters()
 
 			GameManager::enemiesInScene.push_back(Zombie01);
 			GameManager::enemiesInScene.push_back(Zombie02);
+
+			GameManager::enemiesInLevel1.push_back(Zombie01);
+			GameManager::enemiesInLevel1.push_back(Zombie02);
 			break;
 		case 3:
 			break;
 		default:
 			break;
+			GameManager::room1Clear = false;
 		}
 	}
 	else if (GameManager::currentRoom == 1) //When entering room2 from room1
@@ -244,9 +302,61 @@ void GameController::SpawnMonsters()
 		GameManager::enemiesInScene.push_back(Kobold02);
 		GameManager::enemiesInScene.push_back(Kobold03);
 
-	}
+		GameManager::enemiesInLevel2.push_back(Kobold01);
+		GameManager::enemiesInLevel2.push_back(Kobold02);
+		GameManager::enemiesInLevel2.push_back(Kobold03);
 
-	GameManager::roomCleared = false;
+		GameManager::room2Clear = false;
+
+	}
+}
+
+bool GameController::CheckDoorStatus()
+{
+	if (GameManager::currentRoom == 0)
+	{
+		return GameManager::doorOpen;
+	}
+	if (GameManager::currentRoom == 1)
+	{
+		return GameManager::door1Open;
+	}
+	if (GameManager::currentRoom == 2)
+	{
+		return GameManager::door2Open;
+	}
+}
+
+bool GameController::CheckRoomClear()
+{
+	if (GameManager::currentRoom == 0)
+	{
+		return GameManager::roomClear;
+	}
+	if (GameManager::currentRoom == 1)
+	{
+		return GameManager::room1Clear;
+	}
+	if (GameManager::currentRoom == 2)
+	{
+		return GameManager::room2Clear;
+	}
+}
+
+void GameController::CheckEnemyInLevel()
+{
+	if (GameManager::currentRoom == 0)
+	{
+		GameManager::roomClear = GameManager::enemiesInScene.empty();
+	}
+	if (GameManager::currentRoom == 1)
+	{
+		GameManager::room1Clear = GameManager::enemiesInLevel1.empty();
+	}
+	if (GameManager::currentRoom == 2)
+	{
+		GameManager::room2Clear = GameManager::enemiesInLevel2.empty();
+	}
 }
 
 void GameController::CheckCollisionWithMonster()
