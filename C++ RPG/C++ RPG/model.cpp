@@ -2,6 +2,7 @@
 
 int*** GameManager::world = 0;
 int** GameManager::battleField = 0;
+int** GameManager::bonfireScreen = 0;
 
 bool GameManager::inFight = false;
 bool GameManager::playerTurn = true;

@@ -27,6 +27,10 @@ void Visualizer::DrawLevel()
 				{
 					std::cout << GREEN; // Colorize the Walls Green
 				}
+				else if (GameManager::world[c][h][w] == 2) //BONFIRE
+				{
+					std::cout << GREEN; //TODO: REPLACE WITH BONFIRE COLOR
+				}
 				else if (GameManager::world[c][h][w] == 3)
 				{
 					std::cout << DOOR;
@@ -181,6 +185,46 @@ void Visualizer::ClearPreviousMonsterPosition(Monster* _mon)
 		RelocateCursorPosition(_mon->Xposition + GameManager::levelWidth, _mon->Yposition + GameManager::levelHeight);
 		std::cout << STANDARD;
 	}
+}
+
+void Visualizer::DrawBonfireScreen() //ACTUALLY THE SAME AS BATTLE SCREEN, MAYBE DISPOSABLE
+{
+
+	//OUTLINE OF BATTLESCREEN
+	CLEARSCREEN
+		for (int h = 0; h < 21; h++)
+		{
+			for (int w = 0; w < 25; w++)
+			{
+				if (GameManager::bonfireScreen[h][w] == 1)
+				{
+					std::cout << WHITE;
+				}
+				else std::cout << STANDARD
+					std::cout << RESET;
+			}
+			std::cout << "\n";
+		}
+
+	// HP BARS
+	RelocateCursorPosition(4, 3); //Numbers are tests
+	//std::cout << "Player HP";
+	RelocateCursorPosition(5, 4);
+	for (int i = 0; i < GameManager::player->hp; i++)
+	{
+		std::cout << GREEN;
+	}
+	std::cout << RESET;
+
+	RelocateCursorPosition(4, 5); //Numbers are tests
+	//std::cout << GameManager::opponent->name << " HP";
+	RelocateCursorPosition(5, 6);
+	//for (int i = 0; i < GameManager::opponent->hp; i++)
+	//{
+	//	std::cout << GREEN;
+	//}
+	std::cout << RESET;
+	
 }
 
 

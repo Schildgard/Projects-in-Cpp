@@ -15,7 +15,6 @@ void Character :: GetDamage(int _damage) {
 
 };
 void Character::Die() {
-	//_player->exp += exp;
-	//std::cout << _player->name << " gains " << exp << " exp\n";
+
 };
 

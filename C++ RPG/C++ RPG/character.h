@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string.h>
 
+
 class Character {
 public:
 	std::string name;

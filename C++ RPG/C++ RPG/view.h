@@ -21,6 +21,7 @@ namespace Visualizer
 	void DrawBattleScreen(int** _battleScreenArray);
 	void DrawPlayerBattleOption(int* _select);
 	void DrawGameOverScreen();
+	void DrawBonfireScreen();
 
 	void WriteBattleText(std::string _text);
 

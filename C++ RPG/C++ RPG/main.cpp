@@ -24,6 +24,8 @@ void Start()
 	//Initialize BattleScreen
 	GameManager::battleField = GameController::CreateBattleScreen();
 
+	GameManager::bonfireScreen = GameController::CreateBonfireScreen();
+
 }
 
 void Update(Character* _player, int*** _level)
@@ -51,7 +53,10 @@ void Update(Character* _player, int*** _level)
 
 			std::cout << "Current Room: " << GameManager::currentRoom << "\n";
 			std::cout << "Door Open: " << GameController::CheckDoorStatus() << "\n";
-			std::cout << "Room Clear : " << GameController::CheckRoomClear();
+			std::cout << "Room Clear : " << GameController::CheckRoomClear() << "\n";
+			std::cout << "Player Life: " << GameManager::player->hp << "\n";
+			std::cout << "Player EXP: " << GameManager::player->exp;
+
 		}
 
 

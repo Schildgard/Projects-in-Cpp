@@ -11,6 +11,7 @@ namespace GameController
 	//CREATE GAMEPLAY FIELD
 	int*** CreateLevel(int _width, int _height);
 	int** CreateBattleScreen();
+	int** CreateBonfireScreen();
 
 	//PLAYER MOVEMENT
 	void MoveCharacter(Character* _player, int*** _level, int _input);
@@ -24,7 +25,6 @@ namespace GameController
 	bool CheckDoorStatus();
 	bool CheckRoomClear();
 	void CheckEnemyInLevel();
-	void RemoveEnemyFromList();
 
 	// BATTLE
 	void CheckCollisionWithMonster();

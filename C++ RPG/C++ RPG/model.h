@@ -8,6 +8,7 @@ static class GameManager
 public:
 	static int*** world;
 	static int** battleField;
+	static int** bonfireScreen;
 
 	static bool inFight;
 	static bool playerTurn;

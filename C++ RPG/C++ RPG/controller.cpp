@@ -36,6 +36,10 @@ int*** GameController::CreateLevel(int _width, int _height)
 				{
 					array2D[h][w] = 7; // set player start position
 				}
+				else if (h == 5 && w == 5 && c == 0) // BONFIRE SPAWN
+				{
+					array2D[h][w] = 2;
+				}
 				else
 				{
 					array2D[h][w] = 0;
@@ -83,6 +87,40 @@ int** GameController::CreateBattleScreen()
 
 }
 
+int** GameController::CreateBonfireScreen()
+{
+
+	int** bonfireScreenArray = nullptr;
+	bonfireScreenArray = new int* [21];
+
+
+	int* width = nullptr;
+
+	width = new int[25] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; bonfireScreenArray[0] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[1] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[2] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[3] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[4] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[5] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[6] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[7] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[8] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[9] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[10] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[11] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[12] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[13] = width;
+	width = new int[25] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 }; bonfireScreenArray[14] = width;
+	width = new int[25] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; bonfireScreenArray[15] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; bonfireScreenArray[16] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; bonfireScreenArray[17] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; bonfireScreenArray[18] = width;
+	width = new int[25] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 }; bonfireScreenArray[19] = width;
+	width = new int[25] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; bonfireScreenArray[20] = width;
+
+	return bonfireScreenArray;
+}
+
 void GameController::MoveCharacter(Character* _player, int*** _level, int _input)
 {
 	Visualizer::ClearPreviousCharacterPosition(_player);
@@ -101,6 +139,9 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		break;
 	case 1: //WALL
 		// DO NOT MOVE CHARACTER
+		break;
+	case 2:
+		Visualizer::DrawBonfireScreen();
 		break;
 	case 3:// DOOR
 		//DO DIFFERENT CHECKS
@@ -372,21 +413,6 @@ void GameController::CheckEnemyInLevel()
 	}
 }
 
-void GameController::RemoveEnemyFromList()
-{
-	if (GameManager::currentRoom == 0)
-	{
-		GameManager::enemiesInScene.erase(GameManager::enemiesInScene.begin() + 0);
-	}
-	if (GameManager::currentRoom == 1)
-	{
-		GameManager::enemiesInLevel1.erase(GameManager::enemiesInLevel1.begin() + 0);
-	}
-	if (GameManager::currentRoom == 2)
-	{
-		GameManager::enemiesInLevel2.erase(GameManager::enemiesInLevel2.begin() + 0);
-	}
-}
 
 void GameController::CheckCollisionWithMonster()
 {
