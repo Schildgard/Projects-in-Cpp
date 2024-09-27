@@ -24,19 +24,27 @@ int CharacterController::LookForInput()
 }
 void CharacterController::LookForInputNotAsync(int* _select)
 {
-	//THIS IS ONLY USED TO CHOOSE PLAYER ACTIONS WHILE COMBAT
+	//THIS IS ONLY USED TO CHOOSE PLAYER ACTIONS WHILE COMBAT OR AT BONFIRE
 	int input = _getch();
 
 	if (input == 224)
 	{
 		input = _getch();
-		if (input == 72)
+		if (input == 72) // UP
 		{
 			*_select = 1;
 		}
-		else if (input == 80)
+		else if (input == 80) //DOWN
 		{
 			*_select = 2;
+		}
+		else if (input == 75) // LEFT
+		{
+			*_select = 3;
+		}
+		else if (input == 77) // RIGHT
+		{
+			*_select = 4;
 		}
 	}
 	else if (input == 13)

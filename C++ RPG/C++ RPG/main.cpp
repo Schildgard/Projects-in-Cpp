@@ -32,10 +32,14 @@ void Update(Character* _player, int*** _level)
 {
 	bool gameIsRunning = true;
 	int input = 0;
-	int* select = nullptr; //represents the option when player is in battle
 
+	int* select = nullptr; //represents the option when player is in battle
 	int currentOption = 1; // even necessary?
 	select = &currentOption;
+
+	int* statIndexPtr = nullptr;
+	int  statIndex = 1;
+	statIndexPtr = &statIndex;
 
 
 	_level = GameController::CreateLevel(GameManager::levelWidth, GameManager::levelHeight);
@@ -127,6 +131,28 @@ void Update(Character* _player, int*** _level)
 			}
 			getchar();
 			Visualizer::DrawLevel();
+		}
+
+		if (GameManager::atBonfire)
+		{
+			Visualizer::DrawBonfireScreen();
+
+			while (GameManager::playerTurn)
+			{
+				//DRAW STAT OPTIONS
+				Visualizer::DrawBonfireOptions(select);
+				GameController::SetPlayerOption(select, statIndexPtr);
+				//LOOK FOR INPUT
+				CharacterController::LookForInputNotAsync(select);
+				//SET STATS
+				// EXIT LOOP
+				Visualizer::RelocateCursorPosition(0, 15);
+				std::cout << "Player HP: " << GameManager::player->hp;
+				Visualizer::RelocateCursorPosition(0, 16);
+				std::cout << "Player STR: " << GameManager::player->str;
+				Visualizer::DrawBonfireScreen();
+			}
+
 		}
 	}
 }

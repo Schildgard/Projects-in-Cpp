@@ -7,6 +7,7 @@ int** GameManager::bonfireScreen = 0;
 bool GameManager::inFight = false;
 bool GameManager::playerTurn = true;
 bool GameManager::roomCleared = true;
+bool GameManager::atBonfire = false;
 
 
 bool GameManager::doorOpen = false;

@@ -20,6 +20,7 @@ namespace Visualizer
 	void DrawLevel();
 	void DrawBattleScreen(int** _battleScreenArray);
 	void DrawPlayerBattleOption(int* _select);
+	void DrawBonfireOptions(int* _currentOption);
 	void DrawGameOverScreen();
 	void DrawBonfireScreen();
 

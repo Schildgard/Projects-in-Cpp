@@ -26,6 +26,8 @@ namespace GameController
 	bool CheckRoomClear();
 	void CheckEnemyInLevel();
 
+	void SetPlayerOption(int* _input, int* _currentOption);
+
 	// BATTLE
 	void CheckCollisionWithMonster();
 	void MoveCursorToBattleText();

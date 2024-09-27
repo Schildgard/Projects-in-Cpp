@@ -12,6 +12,7 @@ public:
 
 	static bool inFight;
 	static bool playerTurn;
+	static bool atBonfire;
 
 	static bool roomCleared;
 

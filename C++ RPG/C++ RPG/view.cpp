@@ -103,13 +103,68 @@ void Visualizer::DrawPlayerBattleOption(int* _select)
 		std::cout << " > Attack\n";
 		std::cout << RED << RED << RESET << "   Flee";
 	}
-	else if (*_select ==2)
+	else if (*_select == 2)
 	{
 		GameController::MoveCursorToBattleText();
 		std::cout << "   Attack\n";
 		std::cout << RED << RED << RESET << " > Flee";
 	}
 
+}
+
+void Visualizer::DrawBonfireOptions(int* _currentOption)
+{
+	switch (*_currentOption)
+	{
+	case 1:
+		RelocateCursorPosition(5, 1);
+		std::cout << ">   HP: " << GameManager::player->hp << "\n";
+		RelocateCursorPosition(5, 2);
+		std::cout << "STR: " << GameManager::player->str << "\n";
+		RelocateCursorPosition(5, 3);
+		std::cout << "DEF: " << GameManager::player->def << "\n";
+		break;
+	case 2:
+		RelocateCursorPosition(5, 1);
+		std::cout << "HP: " << GameManager::player->hp << "\n";
+		RelocateCursorPosition(5, 2);
+		std::cout << ">   STR: " << GameManager::player->str << "\n";
+		RelocateCursorPosition(5, 3);
+		std::cout << "DEF: " << GameManager::player->def << "\n";
+		break;
+	case 3:
+		RelocateCursorPosition(5, 1);
+		std::cout << "HP: " << GameManager::player->hp << "\n";
+		RelocateCursorPosition(5, 2);
+		std::cout << "STR: " << GameManager::player->str << "\n";
+		RelocateCursorPosition(5, 3);
+		std::cout << ">   DEF: " << GameManager::player->def << "\n";
+		break;
+	case 4:
+		RelocateCursorPosition(5, 1);
+		std::cout << "HP: " << GameManager::player->hp << "\n";
+		RelocateCursorPosition(5, 2);
+		std::cout << "STR: " << GameManager::player->str << "\n";
+		RelocateCursorPosition(5, 3);
+		std::cout << "DEF: " << GameManager::player->def << "\n";
+		break;
+	case 5:
+		RelocateCursorPosition(5, 1);
+		std::cout << "HP: " << GameManager::player->hp << "\n";
+		RelocateCursorPosition(5, 2);
+		std::cout << "STR: " << GameManager::player->str << "\n";
+		RelocateCursorPosition(5, 3);
+		std::cout << "DEF: " << GameManager::player->def << "\n";
+		break;
+	case 6:
+		RelocateCursorPosition(5, 1);
+		std::cout << "HP: " << GameManager::player->hp << "\n";
+		RelocateCursorPosition(5, 2);
+		std::cout << "STR: " << GameManager::player->str << "\n";
+		RelocateCursorPosition(5, 3);
+		std::cout << "DEF: " << GameManager::player->def << "\n";
+		break;
+	}
 }
 
 void Visualizer::DrawGameOverScreen()
@@ -210,10 +265,10 @@ void Visualizer::DrawBonfireScreen() //ACTUALLY THE SAME AS BATTLE SCREEN, MAYBE
 	RelocateCursorPosition(4, 3); //Numbers are tests
 	//std::cout << "Player HP";
 	RelocateCursorPosition(5, 4);
-	for (int i = 0; i < GameManager::player->hp; i++)
-	{
-		std::cout << GREEN;
-	}
+	//for (int i = 0; i < GameManager::player->hp; i++)
+	//{
+	//	std::cout << GREEN;
+	//}
 	std::cout << RESET;
 
 	RelocateCursorPosition(4, 5); //Numbers are tests
@@ -224,7 +279,7 @@ void Visualizer::DrawBonfireScreen() //ACTUALLY THE SAME AS BATTLE SCREEN, MAYBE
 	//	std::cout << GREEN;
 	//}
 	std::cout << RESET;
-	
+
 }
 
 

@@ -141,7 +141,8 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		// DO NOT MOVE CHARACTER
 		break;
 	case 2:
-		Visualizer::DrawBonfireScreen();
+		GameManager::atBonfire = true;
+		GameManager::playerTurn = true; // PLAYER TURN SHOULS BE CHANGED TO PLAYER CHOOSE OPTION
 		break;
 	case 3:// DOOR
 		//DO DIFFERENT CHECKS
@@ -438,6 +439,60 @@ void GameController::MoveCursorToBattleText()
 {
 	Visualizer::RelocateCursorPosition(3, 16);
 
+}
+
+void GameController::SetPlayerOption(int* _input, int* _currentOption)
+{
+	if (*_input == 1)
+	{
+		*++_currentOption;
+	}
+	else if (*_input == 2)
+	{
+		*++_currentOption;
+	}
+
+	else if (*_input == 3) // LEFT
+	{
+		switch (*_currentOption)
+		{
+		case 1:
+			GameManager::player->hp--;
+			break;
+		case 2:
+			GameManager::player->str--;
+			break;
+		case 3:
+			GameManager::player->def--;
+			break;
+		case 4:
+			GameManager::player->spd--;
+			break;
+		default:
+			break;
+		}
+
+	}
+	else if (*_input == 4) //RIGHT
+	{
+		switch (*_currentOption)
+		{
+		case 1:
+			GameManager::player->hp++;
+			break;
+		case 2:
+			GameManager::player->str++;
+			break;
+		case 3:
+			GameManager::player->def++;
+			break;
+		case 4:
+			GameManager::player->spd++;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 
