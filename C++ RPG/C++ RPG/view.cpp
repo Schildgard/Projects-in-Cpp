@@ -123,6 +123,8 @@ void Visualizer::DrawBonfireOptions(int* _currentOption)
 		std::cout << "STR: " << GameManager::player->str << "\n";
 		RelocateCursorPosition(5, 3);
 		std::cout << "DEF: " << GameManager::player->def << "\n";
+		RelocateCursorPosition(5, 5);
+		std::cout << "EXIT";
 		break;
 	case 2:
 		RelocateCursorPosition(5, 1);
@@ -131,6 +133,8 @@ void Visualizer::DrawBonfireOptions(int* _currentOption)
 		std::cout << ">   STR: " << GameManager::player->str << "\n";
 		RelocateCursorPosition(5, 3);
 		std::cout << "DEF: " << GameManager::player->def << "\n";
+		RelocateCursorPosition(5, 5);
+		std::cout << "EXIT";
 		break;
 	case 3:
 		RelocateCursorPosition(5, 1);
@@ -139,6 +143,8 @@ void Visualizer::DrawBonfireOptions(int* _currentOption)
 		std::cout << "STR: " << GameManager::player->str << "\n";
 		RelocateCursorPosition(5, 3);
 		std::cout << ">   DEF: " << GameManager::player->def << "\n";
+		RelocateCursorPosition(5, 5);
+		std::cout << "EXIT";
 		break;
 	case 4:
 		RelocateCursorPosition(5, 1);
@@ -147,23 +153,25 @@ void Visualizer::DrawBonfireOptions(int* _currentOption)
 		std::cout << "STR: " << GameManager::player->str << "\n";
 		RelocateCursorPosition(5, 3);
 		std::cout << "DEF: " << GameManager::player->def << "\n";
+		RelocateCursorPosition(5, 5);
+		std::cout << ">   EXIT";
 		break;
-	case 5:
-		RelocateCursorPosition(5, 1);
-		std::cout << "HP: " << GameManager::player->hp << "\n";
-		RelocateCursorPosition(5, 2);
-		std::cout << "STR: " << GameManager::player->str << "\n";
-		RelocateCursorPosition(5, 3);
-		std::cout << "DEF: " << GameManager::player->def << "\n";
-		break;
-	case 6:
-		RelocateCursorPosition(5, 1);
-		std::cout << "HP: " << GameManager::player->hp << "\n";
-		RelocateCursorPosition(5, 2);
-		std::cout << "STR: " << GameManager::player->str << "\n";
-		RelocateCursorPosition(5, 3);
-		std::cout << "DEF: " << GameManager::player->def << "\n";
-		break;
+		//case 5:
+		//	RelocateCursorPosition(5, 1);
+		//	std::cout << "HP: " << GameManager::player->hp << "\n";
+		//	RelocateCursorPosition(5, 2);
+		//	std::cout << "STR: " << GameManager::player->str << "\n";
+		//	RelocateCursorPosition(5, 3);
+		//	std::cout << "DEF: " << GameManager::player->def << "\n";
+		//	break;
+		//case 6:
+		//	RelocateCursorPosition(5, 1);
+		//	std::cout << "HP: " << GameManager::player->hp << "\n";
+		//	RelocateCursorPosition(5, 2);
+		//	std::cout << "STR: " << GameManager::player->str << "\n";
+		//	RelocateCursorPosition(5, 3);
+		//	std::cout << "DEF: " << GameManager::player->def << "\n";
+		//	break;
 	}
 }
 

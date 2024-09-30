@@ -7,15 +7,15 @@ int CharacterController::LookForInput()
 	{
 		return 1;
 	}
-	else if (GetAsyncKeyState(VK_DOWN))
+	if (GetAsyncKeyState(VK_DOWN))
 	{
 		return -1;
 	}
-	else if (GetAsyncKeyState(VK_LEFT))
+	if (GetAsyncKeyState(VK_LEFT))
 	{
 		return -2;
 	}
-	else if (GetAsyncKeyState(VK_RIGHT))
+	if (GetAsyncKeyState(VK_RIGHT))
 	{
 		return 2;
 	}
@@ -50,5 +50,6 @@ void CharacterController::LookForInputNotAsync(int* _select)
 	else if (input == 13)
 	{
 		GameManager::playerTurn = false;
+		*_select = 13;
 	}
 }

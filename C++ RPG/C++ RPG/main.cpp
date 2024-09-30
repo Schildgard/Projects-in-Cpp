@@ -93,9 +93,9 @@ void Update(Character* _player, int*** _level)
 
 
 		//BATTLE SCENE
-		*select = 1; //first option is always 1
 		while (GameManager::inFight)
 		{
+			*select = 1; //first option is always 1
 			Visualizer::DrawBattleScreen(GameManager::battleField);
 
 			//PLAYER TURN
@@ -104,7 +104,7 @@ void Update(Character* _player, int*** _level)
 				Visualizer::DrawPlayerBattleOption(select);
 				CharacterController::LookForInputNotAsync(select);
 			}
-			if (*select == 1) // PLAYER ATTACK
+			if (*select == 13) // PLAYER ATTACK
 			{
 				GameManager::player->Attack(GameManager::opponent);
 				getchar();
@@ -140,19 +140,17 @@ void Update(Character* _player, int*** _level)
 			while (GameManager::playerTurn)
 			{
 				//DRAW STAT OPTIONS
-				Visualizer::DrawBonfireOptions(select);
 				GameController::SetPlayerOption(select, statIndexPtr);
+				Visualizer::DrawBonfireOptions(statIndexPtr);
 				//LOOK FOR INPUT
 				CharacterController::LookForInputNotAsync(select);
 				//SET STATS
 				// EXIT LOOP
-				Visualizer::RelocateCursorPosition(0, 15);
-				std::cout << "Player HP: " << GameManager::player->hp;
-				Visualizer::RelocateCursorPosition(0, 16);
-				std::cout << "Player STR: " << GameManager::player->str;
+
 				Visualizer::DrawBonfireScreen();
 			}
-
+			GameManager::atBonfire = false;
+			Visualizer::DrawLevel();
 		}
 	}
 }

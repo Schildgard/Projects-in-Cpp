@@ -142,7 +142,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		break;
 	case 2:
 		GameManager::atBonfire = true;
-		GameManager::playerTurn = true; // PLAYER TURN SHOULS BE CHANGED TO PLAYER CHOOSE OPTION
+		GameManager::playerTurn = true; // PLAYER TURN SHOULD	 BE CHANGED TO PLAYER CHOOSE OPTION
 		break;
 	case 3:// DOOR
 		//DO DIFFERENT CHECKS
@@ -443,13 +443,13 @@ void GameController::MoveCursorToBattleText()
 
 void GameController::SetPlayerOption(int* _input, int* _currentOption)
 {
-	if (*_input == 1)
+	if (*_input == 1 && *_currentOption > 1)
 	{
-		*++_currentOption;
+		--*_currentOption;
 	}
-	else if (*_input == 2)
+	else if (*_input == 2 && *_currentOption < 4)
 	{
-		*++_currentOption;
+		++*_currentOption;
 	}
 
 	else if (*_input == 3) // LEFT
@@ -465,13 +465,9 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption)
 		case 3:
 			GameManager::player->def--;
 			break;
-		case 4:
-			GameManager::player->spd--;
-			break;
 		default:
 			break;
 		}
-
 	}
 	else if (*_input == 4) //RIGHT
 	{
@@ -486,13 +482,18 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption)
 		case 3:
 			GameManager::player->def++;
 			break;
-		case 4:
-			GameManager::player->spd++;
-			break;
 		default:
 			break;
 		}
 	}
+
+	else if (*_input == 13 && *_currentOption == 4) // IF PLAYER PRESS ENTER ON EXIT
+	{
+		GameManager::playerTurn = false;
+
+	}
+
+	std::cout << "\n current Option Index: " << *_currentOption;
 }
 
 
