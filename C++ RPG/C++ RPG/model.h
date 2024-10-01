@@ -26,7 +26,6 @@ public:
 	static bool room2Clear;
 
 
-	static int opponentsIndex; //IndexPosition in EnemiesInScene array
 	static int levelWidth;
 	static int levelHeight;
 	static int roomCount;

@@ -349,10 +349,6 @@ void GameController::SpawnMonsters()
 void GameController::RespawnMonsters()
 {
 	//REMOVE ALL ENEMIES
-	//for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
-	//{
-	//	GameManager::enemiesInScene.erase(std::ranges::find(GameManager::enemiesInScene, GameManager::enemiesInScene[i])); // ITERATING THROUGH A LIST WHILE ALSO REMOVING AN ELEMENT OF THE SAME LIST DOES WORK OUT
-	//}
 
 	GameManager::enemiesInScene.clear();
 
@@ -362,7 +358,7 @@ void GameController::RespawnMonsters()
 		Zombie* Zombie01 = new Zombie();
 		Zombie* Zombie02 = new Zombie();
 
-		;
+		
 		Zombie01->Xposition = 5;
 		Zombie01->Yposition = 5;
 		Zombie02->Xposition = 10;
@@ -370,8 +366,6 @@ void GameController::RespawnMonsters()
 
 		GameManager::enemiesInScene.push_back(Zombie01);
 		GameManager::enemiesInScene.push_back(Zombie02);
-
-
 	}
 	if (GameManager::roomCount == 3) //When entering room2 from room1
 	{
@@ -389,8 +383,6 @@ void GameController::RespawnMonsters()
 		GameManager::enemiesInScene.push_back(Kobold01);
 		GameManager::enemiesInScene.push_back(Kobold02);
 		GameManager::enemiesInScene.push_back(Kobold03);
-
-
 	}
 
 }
@@ -464,7 +456,6 @@ void GameController::CheckCollisionWithMonster()
 	{
 		if (GameManager::player->Xposition == GameManager::enemiesInScene[i]->Xposition && GameManager::player->Yposition == GameManager::enemiesInScene[i]->Yposition && GameManager::currentRoom == GameManager::enemiesInScene[i]->dungeonLevel)
 		{
-			GameManager::opponentsIndex = i; //save the index of monster to remove it after fight
 			StartFight(GameManager::enemiesInScene[i]);
 
 		}
@@ -559,11 +550,11 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption) // TODO: 
 
 void GameController::TriggerBonfire()
 {
+	ClearInputBuffer();
 	GameManager::atBonfire = true;
 	GameManager::playerTurn = true; // PLAYER TURN SHOULD	 BE CHANGED TO PLAYER CHOOSE OPTION
 	HealPlayer();
 	RespawnMonsters();
-	ClearInputBuffer();
 
 }
 
