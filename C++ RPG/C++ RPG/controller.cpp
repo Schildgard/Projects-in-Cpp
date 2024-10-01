@@ -444,7 +444,7 @@ void GameController::MoveCursorToBattleText()
 
 }
 
-void GameController::SetPlayerOption(int* _input, int* _currentOption)
+void GameController::SetPlayerOption(int* _input, int* _currentOption) // TODO: CLARIFY WHAT THIS FUNCTION ACTUALLY DOES
 {
 	if (*_input == 1 && *_currentOption > 1)
 	{
@@ -461,29 +461,35 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption)
 		{
 		case 1:
 			GameManager::player->hp--;
+			GameManager::player->exp += 2;
 			break;
 		case 2:
 			GameManager::player->str--;
+			GameManager::player->exp += 2;
 			break;
 		case 3:
 			GameManager::player->def--;
+			GameManager::player->exp += 2;
 			break;
 		default:
 			break;
 		}
 	}
-	else if (*_input == 4) //RIGHT
+	else if (*_input == 4 && GameManager::player->exp >= 2) //RIGHT
 	{
 		switch (*_currentOption)
 		{
 		case 1:
 			GameManager::player->hp++;
+			GameManager::player->exp -= 2;
 			break;
 		case 2:
 			GameManager::player->str++;
+			GameManager::player->exp -= 2;
 			break;
 		case 3:
 			GameManager::player->def++;
+			GameManager::player->exp -= 2;
 			break;
 		default:
 			break;
