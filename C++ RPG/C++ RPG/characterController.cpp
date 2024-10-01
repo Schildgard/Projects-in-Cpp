@@ -49,7 +49,15 @@ void CharacterController::LookForInputNotAsync(int* _select) // TODO: CHANGE NAM
 	}
 	else if (input == 13)
 	{
+		if (*_select ==1) // 1 is the case if the pointer is on Attack, 2 if the pointer is on flee TODO: CLEAR THIS SPAGHETTI CODE
+		{
 		GameManager::playerTurn = false;
 		*_select = 13;
+		}
+		else if(*_select == 2)
+		{
+			GameManager::playerTurn = false;
+			*_select = 14;
+		}
 	}
 }

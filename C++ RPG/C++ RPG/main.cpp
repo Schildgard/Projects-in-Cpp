@@ -55,7 +55,7 @@ void Update(Character* _player, int*** _level)
 		{
 			GameController::MoveCharacter(_player, _level, input);
 
-			std::cout << "Current Room: " << GameManager::currentRoom << "\n";
+			std::cout << "Room Count: " << GameManager::roomCount << "\n";
 			std::cout << "Door Open: " << GameController::CheckDoorStatus() << "\n";
 			std::cout << "Room Clear : " << GameController::CheckRoomClear() << "\n";
 			std::cout << "Player Life: " << GameManager::player->hp << "\n";
@@ -114,7 +114,7 @@ void Update(Character* _player, int*** _level)
 					GameManager::opponent->Attack(GameManager::player);
 					GameManager::playerTurn = true;
 				}
-				else // IF ENEMY DIED
+				else  // IF ENEMY DIED
 				{
 
 					//GET ENEMY LIST ID AND REMOVE ENEMY FROM LIST
@@ -125,9 +125,9 @@ void Update(Character* _player, int*** _level)
 					GameController::CheckEnemyInLevel();
 				}
 			}
-			else if (*select == 2) //PLAYER FLEE
+			else if (*select == 14) //PLAYER FLEE
 			{
-				//insert flee option
+				GameManager::player->Flee();
 			}
 			getchar();
 			Visualizer::DrawLevel();

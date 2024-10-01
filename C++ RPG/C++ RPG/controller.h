@@ -22,6 +22,7 @@ namespace GameController
 	void OpenNewRoom();
 	void ChangeCurrentRoom(int _multiplier); //either 1 for next level or -1 for previous level
 	void SpawnMonsters();
+	void RespawnMonsters();
 	bool CheckDoorStatus();
 	bool CheckRoomClear();
 	void CheckEnemyInLevel();

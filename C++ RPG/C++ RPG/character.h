@@ -21,6 +21,7 @@ public:
 	std::string colorCode;
 
 	virtual void Attack(Character* _target) = 0;
+	void Flee();
 	virtual void GetDamage(int _damage);
 	virtual void Die();
 };

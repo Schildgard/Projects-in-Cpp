@@ -298,7 +298,7 @@ void GameController::OpenNewRoom()
 
 void GameController::SpawnMonsters()
 {
-	if (GameManager::currentRoom == 0) //When entering room 1 from room 0
+	if (GameManager::roomCount == 2) //When entering room 1 from room 0
 	{
 		Zombie* Zombie01 = new Zombie();
 		Zombie* Zombie02 = new Zombie();
@@ -313,7 +313,7 @@ void GameController::SpawnMonsters()
 			Zombie02->Xposition = 10;
 			Zombie02->Yposition = 10;
 
-			GameManager::enemiesInScene.push_back(Zombie01);  //IS GOING TO BNE REMOVED
+			GameManager::enemiesInScene.push_back(Zombie01);
 			GameManager::enemiesInScene.push_back(Zombie02);
 
 			break;
@@ -324,7 +324,7 @@ void GameController::SpawnMonsters()
 		}
 		GameManager::room1Clear = false;
 	}
-	else if (GameManager::currentRoom == 1) //When entering room2 from room1
+	else if (GameManager::roomCount == 3) //When entering room2 from room1
 	{
 		Kobold* Kobold01 = new Kobold();
 		Kobold* Kobold02 = new Kobold();
@@ -345,6 +345,56 @@ void GameController::SpawnMonsters()
 
 	}
 }
+
+void GameController::RespawnMonsters()
+{
+	//REMOVE ALL ENEMIES
+	//for (int i = 0; i < GameManager::enemiesInScene.size(); i++)
+	//{
+	//	GameManager::enemiesInScene.erase(std::ranges::find(GameManager::enemiesInScene, GameManager::enemiesInScene[i])); // ITERATING THROUGH A LIST WHILE ALSO REMOVING AN ELEMENT OF THE SAME LIST DOES WORK OUT
+	//}
+
+	GameManager::enemiesInScene.clear();
+
+	// ALMOST THE SAME AS THE SPAWN MONSTERS FUNCTION, ONLY DIFFERENCE IS IN THE FIRST IF QUESTION AND THE CLEAR BOOL IS NOT TRIGGERED TODO: REFACTOR TO ONE FUNCTION
+	if (GameManager::roomCount >= 2) //When entering room 1 from room 0
+	{
+		Zombie* Zombie01 = new Zombie();
+		Zombie* Zombie02 = new Zombie();
+
+		;
+		Zombie01->Xposition = 5;
+		Zombie01->Yposition = 5;
+		Zombie02->Xposition = 10;
+		Zombie02->Yposition = 10;
+
+		GameManager::enemiesInScene.push_back(Zombie01);
+		GameManager::enemiesInScene.push_back(Zombie02);
+
+
+	}
+	if (GameManager::roomCount == 3) //When entering room2 from room1
+	{
+		Kobold* Kobold01 = new Kobold();
+		Kobold* Kobold02 = new Kobold();
+		Kobold* Kobold03 = new Kobold();
+
+		Kobold01->Xposition = 8;
+		Kobold01->Yposition = 12;
+		Kobold02->Xposition = 2;
+		Kobold02->Yposition = 3;
+		Kobold03->Xposition = 6;
+		Kobold03->Yposition = 8;
+
+		GameManager::enemiesInScene.push_back(Kobold01);
+		GameManager::enemiesInScene.push_back(Kobold02);
+		GameManager::enemiesInScene.push_back(Kobold03);
+
+
+	}
+
+}
+
 
 bool GameController::CheckDoorStatus()
 {
@@ -427,7 +477,7 @@ void GameController::StartFight(Monster* _enemy)
 	GameManager::opponent = _enemy;
 	GameManager::inFight = true;
 	GameManager::playerTurn = true;
-	
+
 
 }
 
@@ -453,24 +503,24 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption) // TODO: 
 		switch (*_currentOption)
 		{
 		case 1:
-			if (GameManager::player->hp >5)
+			if (GameManager::player->hp > 5)
 			{
-			GameManager::player->hp--;
-			GameManager::player->exp += 2;
+				GameManager::player->hp--;
+				GameManager::player->exp += 2;
 			}
 			break;
 		case 2:
 			if (GameManager::player->str > 5)
 			{
-			GameManager::player->str--;
-			GameManager::player->exp += 2;
+				GameManager::player->str--;
+				GameManager::player->exp += 2;
 			}
 			break;
 		case 3:
 			if (GameManager::player->def > 5)
 			{
-			GameManager::player->def--;
-			GameManager::player->exp += 2;
+				GameManager::player->def--;
+				GameManager::player->exp += 2;
 			}
 			break;
 		default:
@@ -512,6 +562,7 @@ void GameController::TriggerBonfire()
 	GameManager::atBonfire = true;
 	GameManager::playerTurn = true; // PLAYER TURN SHOULD	 BE CHANGED TO PLAYER CHOOSE OPTION
 	HealPlayer();
+	RespawnMonsters();
 	ClearInputBuffer();
 
 }
