@@ -141,8 +141,7 @@ void GameController::MoveCharacter(Character* _player, int*** _level, int _input
 		// DO NOT MOVE CHARACTER
 		break;
 	case 2:
-		GameManager::atBonfire = true;
-		GameManager::playerTurn = true; // PLAYER TURN SHOULD	 BE CHANGED TO PLAYER CHOOSE OPTION
+		TriggerBonfire();
 		break;
 	case 3:// DOOR
 		//DO DIFFERENT CHECKS
@@ -317,8 +316,6 @@ void GameController::SpawnMonsters()
 			GameManager::enemiesInScene.push_back(Zombie01);  //IS GOING TO BNE REMOVED
 			GameManager::enemiesInScene.push_back(Zombie02);
 
-			//GameManager::enemiesInLevel1.push_back(Zombie01);
-			//GameManager::enemiesInLevel1.push_back(Zombie02);
 			break;
 		case 3:
 			break;
@@ -343,10 +340,6 @@ void GameController::SpawnMonsters()
 		GameManager::enemiesInScene.push_back(Kobold01);
 		GameManager::enemiesInScene.push_back(Kobold02);
 		GameManager::enemiesInScene.push_back(Kobold03);
-
-		//GameManager::enemiesInLevel2.push_back(Kobold01);
-		//GameManager::enemiesInLevel2.push_back(Kobold02);
-		//GameManager::enemiesInLevel2.push_back(Kobold03);
 
 		GameManager::room2Clear = false;
 
@@ -460,16 +453,25 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption) // TODO: 
 		switch (*_currentOption)
 		{
 		case 1:
+			if (GameManager::player->hp >5)
+			{
 			GameManager::player->hp--;
 			GameManager::player->exp += 2;
+			}
 			break;
 		case 2:
+			if (GameManager::player->str > 5)
+			{
 			GameManager::player->str--;
 			GameManager::player->exp += 2;
+			}
 			break;
 		case 3:
+			if (GameManager::player->def > 5)
+			{
 			GameManager::player->def--;
 			GameManager::player->exp += 2;
+			}
 			break;
 		default:
 			break;
@@ -495,14 +497,28 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption) // TODO: 
 			break;
 		}
 	}
-
 	else if (*_input == 13 && *_currentOption == 4) // IF PLAYER PRESS ENTER ON EXIT
 	{
 		GameManager::playerTurn = false;
 
 	}
 
+	GameManager::player->maxHp = GameManager::player->hp;
 	std::cout << "\n current Option Index: " << *_currentOption;
+}
+
+void GameController::TriggerBonfire()
+{
+	GameManager::atBonfire = true;
+	GameManager::playerTurn = true; // PLAYER TURN SHOULD	 BE CHANGED TO PLAYER CHOOSE OPTION
+	HealPlayer();
+	ClearInputBuffer();
+
+}
+
+void GameController::HealPlayer()
+{
+	GameManager::player->hp = GameManager::player->maxHp; // CHANGE WITH MAX HP VALUE
 }
 
 

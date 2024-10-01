@@ -11,6 +11,8 @@ public:
 		spd = 3;
 		exp = 3;
 
+		maxHp = hp;
+
 		colorCode = "\033[43m ";
 		dungeonLevel = 2;
 		moveSteps = 2;

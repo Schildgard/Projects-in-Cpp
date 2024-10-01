@@ -27,6 +27,8 @@ namespace GameController
 	void CheckEnemyInLevel();
 
 	void SetPlayerOption(int* _input, int* _currentOption);
+	void TriggerBonfire();
+	void HealPlayer();
 
 	// BATTLE
 	void CheckCollisionWithMonster();

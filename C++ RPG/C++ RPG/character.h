@@ -12,8 +12,11 @@ public:
 	int spd;
 	int exp;
 
+	int maxHp;
+
 	int Yposition;
 	int Xposition;
+
 
 	std::string colorCode;
 

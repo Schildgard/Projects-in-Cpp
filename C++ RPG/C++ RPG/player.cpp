@@ -11,6 +11,5 @@ void Player::Attack(Character* _target)
 void Player::Die()
 {
 	Visualizer::DrawGameOverScreen();
-	//Show GameOverScreen
 
 }

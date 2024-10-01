@@ -13,10 +13,11 @@ public:
 		spd = 5;
 		exp = 0;
 
+		maxHp = hp;
+
 		Xposition = 1;
 		Yposition = 1;
-	};
-
+	}
 	virtual void Attack(Character* _target);
 	virtual void Die() override;
 };
