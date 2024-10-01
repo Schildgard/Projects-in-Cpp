@@ -430,8 +430,11 @@ void GameController::CheckCollisionWithMonster()
 
 void GameController::StartFight(Monster* _enemy)
 {
+	ClearInputBuffer();
 	GameManager::opponent = _enemy;
 	GameManager::inFight = true;
+	GameManager::playerTurn = true;
+	
 
 }
 
@@ -496,6 +499,16 @@ void GameController::SetPlayerOption(int* _input, int* _currentOption)
 	std::cout << "\n current Option Index: " << *_currentOption;
 }
 
+
+void GameController::ClearInputBuffer()
+{
+	int ch;
+	while ((ch = getchar()) != '\n' && ch != EOF) {};
+
+	//1. getchar reads the input buffer
+	// loop until it reaches a new line symbol or end of puffer
+	// this clears the input buffer of all remaining characters
+}
 
 
 

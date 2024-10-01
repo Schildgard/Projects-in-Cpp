@@ -32,5 +32,8 @@ namespace GameController
 	void CheckCollisionWithMonster();
 	void MoveCursorToBattleText();
 	void StartFight(Monster* _enemy);
+
+	//INPUT READING
+	void ClearInputBuffer();
 }
 

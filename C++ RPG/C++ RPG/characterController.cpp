@@ -22,7 +22,7 @@ int CharacterController::LookForInput()
 
 	return 0;
 }
-void CharacterController::LookForInputNotAsync(int* _select)
+void CharacterController::LookForInputNotAsync(int* _select) // TODO: CHANGE NAMING OF THAT FUNCTION
 {
 	//THIS IS ONLY USED TO CHOOSE PLAYER ACTIONS WHILE COMBAT OR AT BONFIRE
 	int input = _getch();
