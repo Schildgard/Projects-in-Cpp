@@ -165,6 +165,11 @@ void Exit()
 	delete GameManager::opponent;
 	delete GameManager::player;
 
+	for (int i = GameManager::enemiesInScene.size(); i >0;i--)
+	{
+		delete GameManager::enemiesInScene[i];
+	}
+
 }
 
 
