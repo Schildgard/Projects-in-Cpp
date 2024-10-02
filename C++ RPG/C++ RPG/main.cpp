@@ -119,6 +119,7 @@ void Update(Character* _player, int*** _level)
 
 					//GET ENEMY LIST ID AND REMOVE ENEMY FROM LIST
 					GameManager::enemiesInScene.erase(std::ranges::find(GameManager::enemiesInScene, GameManager::opponent)); //remove enemy after combat
+					delete GameManager::opponent;
 					// LEAVE FIGHT
 					GameManager::inFight = false;
 					//CHECK IF ROOM IS CLEAR
@@ -144,7 +145,6 @@ void Update(Character* _player, int*** _level)
 				Visualizer::DrawBonfireOptions(statIndexPtr);
 				//LOOK FOR INPUT
 				CharacterController::LookForInputNotAsync(select);
-				//SET STATS
 				// EXIT LOOP
 
 				Visualizer::DrawBonfireScreen();
@@ -159,6 +159,11 @@ void Update(Character* _player, int*** _level)
 
 void Exit()
 {
+	delete GameManager::world;
+	delete GameManager::battleField;
+	delete GameManager::bonfireScreen;
+	delete GameManager::opponent;
+	delete GameManager::player;
 
 }
 
